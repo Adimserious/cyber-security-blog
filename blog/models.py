@@ -4,7 +4,7 @@ from django.utils import timezone
 
 
 # Create your models here.
-class blog_posts(models.Model):
+class Blog_posts(models.Model):
     title = models.CharField(max_length=250, unique=True)
     slug = models.SlugField(max_length=250, unique=True)
     body_content = models.TextField()
