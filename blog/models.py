@@ -18,3 +18,5 @@ class Blog_post(models.Model):
     class Meta:
         ordering = ["-published"]
     
+    def __str__(self):
+        return f"The title of this post is {self.title} | by {self.author}"
