@@ -21,4 +21,5 @@ from blog.views import cyber_blog
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', cyber_blog, name='blog'),
+    path('summernote/', include('django_summernote.urls')),
 ]
