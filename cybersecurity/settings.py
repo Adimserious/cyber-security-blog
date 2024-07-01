@@ -29,8 +29,9 @@ SECRET_KEY = 'django-insecure--s47!&4!$($s8p_)70a&=ym78-j%th89ps0zf5-z5)t1z0%v$6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-adimserious-cybersecuri-txoz040zoa0.ws-eu114.gitpod.io', '.herokuapp.com']
+ALLOWED_HOSTS = ['8000-adimserious-cybersecuri-np420juw4ry.ws.codeinstitute-ide.net', '.herokuapp.com']
 
+CSRF_TRUSTED_ORIGINS = ['https://8000-adimserious-cybersecuri-np420juw4ry.ws.codeinstitute-ide.net', '.https://*.herokuapp.com']
 
 # Application definition
 
@@ -41,9 +42,24 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary_storage',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'crispy_forms',
+    'crispy_bootstrap5',
     'django_summernote',
+    'cloudinary',
     'blog',
 ]
+
+SITE_ID = 1
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -53,6 +69,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'cybersecurity.urls'
@@ -90,10 +107,6 @@ DATABASES = {
     'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
 
-CSRF_TRUSTED_ORIGINS = [
-    "https://*.gitpod.io/",
-    "https://*.herokuapp.com"
-]
 
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
@@ -115,6 +128,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
