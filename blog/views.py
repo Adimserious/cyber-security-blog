@@ -1,10 +1,12 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
-#from django.views import generic
-#from .models import Post/ will remain Post model
-from .forms import FormComment
+from django.views import generic
+from .models import Blog_post
+
 
 
 # Create your views here.
-def cyber_blog(request):
-    return HttpResponse("Hello, this is the cybersecurity domain Blog!")
+class AllPost(generic.ListView):
+    #model = Blog_post
+    queryset = Blog_post.objects.all()
+    template_name = "blog/all_post.html"
+    paginate_by = 3
