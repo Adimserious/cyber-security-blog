@@ -28,12 +28,15 @@ def read_more(request, slug):
 
     :template:`blog/read_more.html`
     """
+    # queryset to filter posts that are done or publiched
     queryset = Blog_post.objects.filter(status=1)
+    # this is A helper function. the slug value is unique for each post
     post = get_object_or_404(queryset, slug=slug)
 
     return render(
         request,
         "blog/read_more.html",
+        # this is a context to pass data from my view to template. the post object is used in the template as DTL variable
         {"post": post},
     )
    

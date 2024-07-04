@@ -24,7 +24,7 @@
         <div class="col card mb-4  mt-3 left  top">
             <div class="card-body">
                 <!-- The post content and date created goes inside the card-text. -->
-                <!-- The | safe filter inside the template tags is necessary -->
+                <!-- The pipe symbol | safe filter inside the template tags is necessary to tell Django that its safe -->
                 <p class="card-text">
                     {{ post.body_content | safe }}
                     {{ post.created }}

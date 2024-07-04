@@ -2,6 +2,8 @@
 
 {% url 'home' as home_url %}
 
+{% url 'about_page' as about_url %}
+
 <!DOCTYPE html>
 <html class="h-100" lang="en">
 
@@ -38,7 +40,8 @@
                         href="{% url 'home' %}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link {% if request.path == about_url %}active{%endif%}"
+                    aria-current="page" href="{% url 'about_page' %}">About</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Contact</a>
