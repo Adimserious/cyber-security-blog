@@ -4,7 +4,11 @@ from django.utils import timezone
 from cloudinary.models import CloudinaryField
 
 class Category(models.Model):
+    """
+    Category model
+    """
     name = models.CharField(max_length=200)
+    
 
     def __str__(self):
         return self.name
