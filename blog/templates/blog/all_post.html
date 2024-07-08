@@ -7,7 +7,7 @@
     <div class="row">
 
         <!--Popular post section-->
-        <div class="text-white text-center">Trending Posts</div>
+        <div class=" text-end m-3 text-white text-center">Trending Posts</div>
         <div class="col-12 mt-3 left">
             <div class="row">   
                 {% for post in blog_post_list %}
@@ -78,7 +78,7 @@
             <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link"> « PREV</a></li>
             {% endif %}
             {% if page_obj.has_next %}
-            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT « </a></li>
+            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo; </a></li>
             {% endif %}
         </ul>
     </nav>

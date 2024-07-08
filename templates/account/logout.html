@@ -6,10 +6,10 @@
 
 {% block content %}
 
-<div class="text-white">
+<div class="text-white text-end m-3">
   <h1>{% trans "Sign Out" %}</h1>
 
-  <p>{% trans 'Are you sure you want to sign out?' %}</p>
+  <h3>{% trans 'Are you sure you want to sign out?' %}</h3>
 
   <form method="post" action="{% url 'account_logout' %}">
     {% csrf_token %}

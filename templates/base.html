@@ -37,34 +37,38 @@
     <header class="">
         <div>
             <a href="{% url 'home' %}">
-                <h1>Cybersecurity Mindset</h1>
+                <h1 class="text-end m-3 text-white logo">Cybersecurity Mindset</h1>
             </a>
 
             <ul class="nav nav-pills nav-fill">
-                <li class="nav-item">
-                    <a class="nav-link active {% if request.path == home_url %}active{% endif %}"
+                <li class="text-end m-3">
+                    <a class="nav-link text-white {% if request.path == home_url %}active{% endif %}"
                         href="{% url 'home' %}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Category </a>
+                    <a class="nav-link text-white" href="#">Category </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {% if request.path == about_url %}active{%endif%}"
-                    aria-current="page" href="{% url 'about_page' %}">About</a>
+                    <a class="nav-link text-white {% if request.path == about_url %}active{%endif%}" aria-current="page"
+                        href="{% url 'about_page' %}">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {% if request.path == contact %}active{%endif%}" href="{% url 'contact' %}">Contact</a>
+                    <a class="nav-link text-white {% if request.path == contact %}active{%endif%}"
+                        href="{% url 'contact' %}">Contact</a>
                 </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link {% if request.path == contact %}active{%endif%}" href="{% url 'account_logout' %}">Login-out</a>
+                    <a class="nav-link text-white {% if request.path == contact %}active{%endif%}"
+                        href="{% url 'account_logout' %}">Login-out</a>
                 </li>
                 {% else %}
                 <li class="nav-item">
-                    <a class="nav-link {% if request.path == contact %}active{%endif%}" href="{% url 'account_signup' %}">Register</a>
+                    <a class="nav-link text-white {% if request.path == contact %}active{%endif%}"
+                        href="{% url 'account_signup' %}">Sign-up</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {% if request.path == contact %}active{%endif%}" href="{% url 'account_login' %}">Login</a>
+                    <a class="nav-link text-white {% if request.path == contact %}active{%endif%}"
+                        href="{% url 'account_login' %}">Login</a>
                 </li>
                 {% endif %}
             </ul>
@@ -74,11 +78,16 @@
 
 
     <main class="">
+        {% if user.is_authenticated %}
+        <p class="text-end m-3 text-white">You are logged in as {{ user }}</p>
+        {% else %}
+        <p class="text-end m-3 text-white">Log in to leave a comment</p>
+        {% endif %}
 
         {% block content %}
         <!-- Content Goes here -->
         {% endblock content %}
-
+        
     </main>
 
     <!-- Footer -->

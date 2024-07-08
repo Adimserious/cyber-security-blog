@@ -8,22 +8,22 @@
 {% block content %}
 
 <div class="text-white">
-  <h1>{% trans "Sign In" %}</h1>
-  <p>{% blocktrans with site.name as site_name %}Welcome back to the cybersecurity mindset blog. To leave a comment
+  <h1 class="text-end m-3 text-center">{% trans "Sign In" %}</h1>
+  <h3 class="text-end m-3">{% blocktrans with site.name as site_name %}Welcome back to the cybersecurity mindset blog. To leave a comment
     or
     like a post, please log in. If
     you
     have not created an account yet, then <a href="{{ signup_url }}">sign up</a>
     instead:{% endblocktrans %}
-  </p>
+  </h3>
 
-  <form class="login" method="POST" action="{% url 'account_login' %}">
+  <form class="login text-end m-3 text-center" method="POST" action="{% url 'account_login' %}">
     {% csrf_token %}
     {{ form.as_p }}
     {% if redirect_field_value %}
     <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
     {% endif %}
-    <button class="btn btn-primary" type="submit">{% trans "Sign In" %}</button>
+    <button class="btn btn-primary" type="submit">{% trans "Log In" %}</button>
   </form>
 </div>
 

@@ -1,4 +1,11 @@
 body {
-    background-color: black;
+    background: url("../placeholder_images/backgroung-img.jpg") 50% no-repeat fixed;
+    background-color: black;  
 }
+
+.logo {
+    text-decoration: none;
+}
+
+
 
