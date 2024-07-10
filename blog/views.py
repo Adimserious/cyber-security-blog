@@ -47,7 +47,10 @@ def create_post(request):
     if request.method == 'POST':
         form = forms.CreatePost(data=request.POST,)
         if form.is_valid():
-            form.save()
+            instance =  form.save(commit=False)
+            # Associating a post being created with the logged in user 
+            instance.author = request.user
+            instance.save()
             return redirect('home')
 
     

@@ -34,3 +34,17 @@ class Blog_post(models.Model):
     
     def __str__(self):
         return f"The title of this post is {self.title} | by {self.author}"
+
+
+
+class Comment(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="commenters")
+    post = models.ForeignKey(Blog_post, on_delete=models.CASCADE, related_name="comments") 
+    content = models.TextField()
+    created = models.DateField(auto_now_add=True)
+    approved = models.BooleanField(default=False)
+    class Meta:
+        ordering = ["created"]
+
+    def __str__(self):
+        return f"Comment: {self.content}. by {self.author}"         
