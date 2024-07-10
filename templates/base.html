@@ -4,6 +4,8 @@
 
 {% url 'about_page' as about_url %}
 
+{% url 'create' as create_url %}
+
 {% url 'account_login' as login_url %}
 {% url 'account_signup' as signup_url %}
 {% url 'account_logout' as logout_url %}
@@ -59,7 +61,11 @@
                 {% if user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link text-white {% if request.path == contact %}active{%endif%}"
-                        href="{% url 'account_logout' %}">Login-out</a>
+                        href="{% url 'create' %}">Create_post</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white {% if request.path == contact %}active{%endif%}"
+                        href="{% url 'account_logout' %}">Log-out</a>
                 </li>
                 {% else %}
                 <li class="nav-item">
@@ -81,32 +87,34 @@
         {% if user.is_authenticated %}
         <p class="text-end m-3 text-white">You are logged in as {{ user }}</p>
         {% else %}
-        <p class="text-end m-3 text-white">Log in to leave a comment</p>
+        <p class="text-end m-3 text-white">Log in to create a post and leave a comment</p>
         {% endif %}
 
         {% block content %}
         <!-- Content Goes here -->
         {% endblock content %}
-        
+
     </main>
 
     <!-- Footer -->
-    <footer class="footer mt-auto py-3">
-        <div>
-            <h4 class="m-0 text-center text-white">Created by Lilian Amatobi</h4>
-            <ul class="socials">
-                <li class="m-0 text-center">
-                    <a href="https://www.linkedin.com/in/lilian-adimchinobi-amatobi-9b93b4208?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
-                        target="_blank" rel="noopener" aria-label="Visit my Linkedln page"><i
-                            class="fa-brands fa-linkedin"></i></a>
-                </li>
-                <li class="m-0 text-center"><a href="" target="_blank" rel="noopener"
-                        aria-label="Visit my Github page"><i class="fa-brands fa-github"></i></a>
-                </li>
-            </ul>
-            <h4 class="m-0 text-center text-white">Inspired by my Love for Security</h4>
-        </div>
-    </footer>
+    <div class="footer_div">
+        <footer class="footer mt-auto py-3">
+            <div>
+                <h4 class="m-0 text-center text-white">Created by Lilian Amatobi</h4>
+                <ul class="socials">
+                    <li class="m-0 text-center">
+                        <a href="https://www.linkedin.com/in/lilian-adimchinobi-amatobi-9b93b4208?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+                            target="_blank" rel="noopener" aria-label="Visit my Linkedln page"><i
+                                class="fa-brands fa-linkedin"></i></a>
+                    </li>
+                    <li class="m-0 text-center"><a href="" target="_blank" rel="noopener"
+                            aria-label="Visit my Github page"><i class="fa-brands fa-github"></i></a>
+                    </li>
+                </ul>
+                <h4 class="m-0 text-center text-white">Inspired by my Love for Security</h4>
+            </div>
+        </footer>
+    </div>
 
     <!-- Font awesome kit -->
     <script src="https://kit.fontawesome.com/c2a5ce9714.js" crossorigin="anonymous"></script>

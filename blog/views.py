@@ -1,6 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from .models import Blog_post
+from django.contrib.auth.decorators import login_required
+from . import forms
 
 
 
@@ -39,4 +41,17 @@ def read_more(request, slug):
         # this is a context to pass data from my view to template. the post object is used in the template as DTL variable
         {"post": post},
     )
-   
+
+@login_required(login_url="/accounts/login/")  
+def create_post(request):
+    if request.method == 'POST':
+        form = forms.CreatePost(data=request.POST,)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+
+    
+    else:
+        # new instance of the create post form to render to the user
+        form = forms.CreatePost()
+    return render(request, 'blog/create_post.html', {'form': form})
