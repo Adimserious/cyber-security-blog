@@ -1,4 +1,4 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% block content %}
 {% load static %}
 
@@ -31,6 +31,25 @@
                     {{ post.created }}
                 </p>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-white">Comments...</h2>
+            {% if not post.comments.all %}
+            No Comments yet... <a href="#">Add a comment</a>
+            {% else %}
+            {% for comment in post.comments.all%}
+            <strong class="text-white">
+                {{ comment.author }} -
+                {{ comment.created }}
+            </strong>
+            <br>
+            <p class="text-white">
+                {{ comment.content }}
+            </p>
+            {% endfor %}
+            {% endif %}
         </div>
     </div>
 </div>

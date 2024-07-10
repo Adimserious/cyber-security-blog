@@ -9,8 +9,6 @@ from . import forms
 # Create your views here.
 
 class Category(generic.ListView):
-
-    
     queryset = Blog_post.objects.filter(author=1)
     template_name = "blog/all_post.html"
     paginate_by = 3
@@ -21,6 +19,7 @@ class AllPost(generic.ListView):
     queryset = Blog_post.objects.all()
     template_name = "blog/all_post.html"
     paginate_by = 3
+
 
 def read_more(request, slug):
     """
@@ -34,12 +33,17 @@ def read_more(request, slug):
     queryset = Blog_post.objects.filter(status=1)
     # this is A helper function. the slug value is unique for each post
     post = get_object_or_404(queryset, slug=slug)
+    comments = post.comments.all().order_by("-created")
+    comment_no = post.comments.filter(approved=True).count()
+
 
     return render(
         request,
         "blog/read_more.html",
         # this is a context to pass data from my view to template. the post object is used in the template as DTL variable
-        {"post": post},
+        {"post": post,
+        "comments": comments,
+        "comment_no": comment_no,},
     )
 
 @login_required(login_url="/accounts/login/")  
