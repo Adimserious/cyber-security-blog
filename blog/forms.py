@@ -6,3 +6,12 @@ class CreatePost(forms.ModelForm):
     class Meta:
         model = models.Blog_post
         fields = ['title', 'slug', 'image', 'body_content', 'snippet', 'category']
+
+
+
+
+
+class CommentPost(forms.ModelForm):
+    class Meta:
+        model = models.Comment
+        fields = ('content',)
