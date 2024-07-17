@@ -27,7 +27,7 @@ class Blog_post(models.Model):
     published = models.DateTimeField(default=timezone.now)
     updated = models.DateTimeField(auto_now=True)
     status = models.IntegerField(choices=STATUS_CHOICES, default=0)
-    category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name="blog_post", default=1)
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name="category", default=1)
     # Meta data class with ordering attribute to sort result by the published field
     class Meta:
         ordering = ["-published"]

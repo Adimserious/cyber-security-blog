@@ -37,29 +37,26 @@
 
 <body>
     <header class="">
-        <div>
+        <div class="bg-primary text-end m-3">
             <a href="{% url 'home' %}">
                 <h1 class="text-end m-3 text-white logo">Cybersecurity Mindset</h1>
             </a>
+            <div>
+                {% if user.is_authenticated %}
+                <p class="text-end m-3 text-white text-right">You are logged in as {{ user }}</p>
+                {% else %}
+                <p class="text-end m-3 text-white text-right">Log in to create a post and leave a comment</p>
+                {% endif %}
+            </div>
 
             <ul class="nav nav-pills nav-fill">
                 <li class="text-end m-3">
                     <a class="nav-link text-white {% if request.path == home_url %}active{% endif %}"
                         href="{% url 'home' %}">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Category </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white {% if request.path == about_url %}active{%endif%}" aria-current="page"
-                        href="{% url 'about_page' %}">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white {% if request.path == contact %}active{%endif%}"
-                        href="{% url 'contact' %}">Contact</a>
-                </li>
+
                 {% if user.is_authenticated %}
-                <li class="nav-item">
+                <li class="nav-item nav-fill">
                     <a class="nav-link text-white {% if request.path == contact %}active{%endif%}"
                         href="{% url 'create' %}">Create_post</a>
                 </li>
@@ -77,36 +74,51 @@
                         href="{% url 'account_login' %}">Login</a>
                 </li>
                 {% endif %}
+
+
+
+                <div class="dropdown text-end m-3">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        More
+                    </button>
+                    <ul>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <button class="dropdown-item" type="button">
+                                <a href="#">Category </a>
+                            </button>
+                            <button class="dropdown-item" type="button"><a
+                                    class=" {% if request.path == about_url %}active{%endif%}" aria-current="page"
+                                    href="{% url 'about_page' %}">About</a></button>
+                            <button class="dropdown-item" type="button"><a
+                                    class=" {% if request.path == contact %}active{%endif%}"
+                                    href="{% url 'contact' %}">Contact</a></button>
+                        </div>
+                    </ul>
             </ul>
+        </div>
 
         </div>
     </header>
 
     <!-- displaying Django confirmation messages -->
-<div class="container text-white">
-    <div class="row">
-      <div>
-        {% for message in messages %}
-        <div class="alert {{ message.tags }} alert-dismissible
+    <div class="container text-white">
+        <div class="row">
+            <div>
+                {% for message in messages %}
+                <div class="alert {{ message.tags }} alert-dismissible
           fade show" id="msg" role="alert">
-          {{ message | safe }}
-          <!-- Add JavaScript functionality later -->
-          <button type="button" class="btn-close"
-            data-bs-dismiss="alert" aria-label="Close"></button>
+                    {{ message | safe }}
+                    <!-- Add JavaScript functionality later -->
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+            </div>
         </div>
-        {% endfor %}
-      </div>
     </div>
-  </div>
 
 
     <main class="">
-        {% if user.is_authenticated %}
-        <p class="text-end m-3 text-white">You are logged in as {{ user }}</p>
-        {% else %}
-        <p class="text-end m-3 text-white">Log in to create a post and leave a comment</p>
-        {% endif %}
-
         {% block content %}
         <!-- Content Goes here -->
         {% endblock content %}

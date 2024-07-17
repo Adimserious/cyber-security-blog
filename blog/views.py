@@ -64,8 +64,16 @@ def read_more(request, slug):
         "comment_post": comment_post},
     )
 
+
 @login_required(login_url="/accounts/login/")  
 def create_post(request):
+    """
+    Users create post
+    
+    **Template:**
+
+    :template:`blog/create_post.html`
+    """
     if request.method == 'POST':
         form = forms.CreatePost(data=request.POST,)
         if form.is_valid():

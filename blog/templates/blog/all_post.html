@@ -7,7 +7,7 @@
     <div class="row">
 
         <!--Popular post section-->
-        <div class=" text-end m-3 text-white text-center">Trending Posts</div>
+        <div class="text-end m-3 text-white text-center">Trending Posts</div>
         <div class="col-12 mt-3 left">
             <div class="row">   
                 {% for post in blog_post_list %}
@@ -48,6 +48,15 @@
                         <div class="card-body">
                             <div class="image-container">
                                 <div class="image-flash">
+                                    <div class="
+                                        {% if not post.done and post.author == user %}
+                                        faded{% elif not post.done %}d-none{% endif %}">
+                                        {% if not post.done and post.author == user %}
+                                        <p class="done">
+                                            This post is awaiting approval
+                                        </p>
+                                        {% endif %}
+                                    </div>
                                     <p class="author">Author: {{ post.author }}</p>
                                 </div>
                             </div>
