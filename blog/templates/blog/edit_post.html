@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+
+
+<div class="create_post text-white text-end m-3">
+    <h2>Edit a post</h2>
+    <form class="post-form" action="{% url 'edit' %}" method="POST" enctype="multipart/form-data">
+        {{ form | crispy }}
+        {% csrf_token %}
+        <button class="btn btn-primary" type="submit">Edit</button>
+    </form>
+</div>
+
+
+
+{% endblock %}
+
+{% block extras %}
+<script src="{% static 'js/edit_post.js' %}"></script>
+{% endblock %}

@@ -3,7 +3,7 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
-
+<!-- Displaying title, author and image -->
 <div class="masthead">
     <div class="container">
         <div class="row g-0">
@@ -20,7 +20,7 @@
     </div>
 </div>
 
-
+<!-- Displaying Blog Posts -->
 <div class="container">
     <div class="row">
         <div class="col card mb-4  mt-3 left  top">
@@ -30,6 +30,10 @@
                 <p class="card-text">
                     {{ post.body_content | safe }}
                     {{ post.created }}
+                </p>
+                <p>{% if user.is_authenticated and post.author == user %}
+                    <button class="btn btn-primary" post_id="{{ post.id }}">Edit Post</button>
+                    {% endif %}
                 </p>
             </div>
         </div>
@@ -74,6 +78,11 @@
                         This comment is awaiting approval
                     </p>
                     {% endif %}
+
+                    {% if user.is_authenticated and comment.author == user %}
+                    <!-- comment_id is a custom attribute-->
+                    <button class="btn btn-primary edit_btn" comment_id="{{ comment.id }}">Edit Comment</button>
+                    {% endif %}
                 </div>
                 <!-- for loop ends here -->
                 {% endfor %}
@@ -81,25 +90,29 @@
         </div>
 
         <!--Submiting New Comments -->
-    <div class="col-md-4 card mb-4 mt-3">
-        <div class="card-body">
-          {% if user.is_authenticated %}
-          <h2>Leave a comment:</h2>
-          <form method="post">
-            {{ comment_post | crispy }}
-            {% csrf_token %}
-            <p>Commenting as: {{ user.username }}</p>
-            <button type="submit"
-              class="btn btn-primary">Submit</button>
-          </form>
-          {% else %}
-          <p>Log in to leave a comment</p>
-          {% endif %}
+        <div class="col-md-4 card mb-4 mt-3">
+            <div class="card-body">
+                {% if user.is_authenticated %}
+                <h2>Leave a comment:</h2>
+                <form id="comment_form" method="post">
+                    {{ comment_post | crispy }}
+                    {% csrf_token %}
+                    <p>Commenting as: {{ user.username }}</p>
+                    <button type="submit" class="btn btn-primary" id="submit_btn">Submit</button>
+                </form>
+                {% else %}
+                <p>Log in to leave a comment</p>
+                {% endif %}
+            </div>
         </div>
-      </div>
 
     </div>
 </div>
 
 
 {% endblock content %}
+
+{% block extras %}
+<script src="{% static 'js/edit_comments.js' %}"></script>
+<script src="{% static 'js/edit_post.js' %}"></script>
+{% endblock %}
