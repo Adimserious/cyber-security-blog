@@ -60,16 +60,16 @@
                 {% if user.is_authenticated %}
                 <li class="nav-item nav-fill">
                     <a class="nav-link text-white {% if request.path == contact %}active{%endif%}"
-                        href="{% url 'create' %}">Create_post</a>
+                        href="{% url 'create' %}">Create post</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white {% if request.path == contact %}active{%endif%}"
-                        href="{% url 'account_logout' %}">Log-out</a>
+                        href="{% url 'account_logout' %}">Log out</a>
                 </li>
                 {% else %}
                 <li class="nav-item">
                     <a class="nav-link text-white {% if request.path == contact %}active{%endif%}"
-                        href="{% url 'account_signup' %}">Sign-up</a>
+                        href="{% url 'account_signup' %}">Sign up</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white {% if request.path == contact %}active{%endif%}"
@@ -87,7 +87,7 @@
                     <ul>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                             <button class="dropdown-item" type="button">
-                                <a href="{% url 'create_category' %}">Add_Category </a>
+                                <a href="{% url 'create_category' %}">Add Category </a>
                             </button>
                             <button class="dropdown-item" type="button"><a
                                     class=" {% if request.path == about_url %}active{%endif%}" aria-current="page"

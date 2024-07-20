@@ -15,3 +15,9 @@ class CommentPost(forms.ModelForm):
     class Meta:
         model = models.Comment
         fields = ('content',)
+
+
+class CreatCategory(forms.ModelForm):
+    class Meta:
+        model = models.Category
+        fields = ("name",)
