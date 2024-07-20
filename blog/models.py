@@ -3,10 +3,19 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from cloudinary.models import CloudinaryField
 
+class Category(models.Model):
+    """
+    Category model
+    """
+    name = models.CharField(max_length=200)
+    
 
+    def __str__(self):
+        return self.name
 
 
 STATUS_CHOICES = ((0, 'pending'), (1, "done"))
+CATEGORY_CHOICES = ((0, 'Cybersecurity attacks'), (1, "Cybersecurity domain"), (2, "Tipps and Guides"))
 # Create your models here.
 class Blog_post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="blog_post")
@@ -19,8 +28,8 @@ class Blog_post(models.Model):
     published = models.DateTimeField(default=timezone.now)
     updated = models.DateTimeField(auto_now=True)
     status = models.IntegerField(choices=STATUS_CHOICES, default=0)
-    category = models.CharField(max_length=250, default=1)
-    
+    status = models.IntegerField(choices=CATEGORY_CHOICES, default=1)
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name="blog_posts", default=1)
     # Meta data class with ordering attribute to sort result by the published field
     class Meta:
         ordering = ["-published"]

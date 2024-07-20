@@ -5,7 +5,7 @@ from cloudinary.models import CloudinaryField
 class CreatePost(forms.ModelForm):
     class Meta:
         model = models.Blog_post
-        fields = ['title', 'slug', 'image', 'body_content', 'snippet']
+        fields = ['title', 'slug', 'image', 'body_content', 'snippet', 'category']
 
 
 

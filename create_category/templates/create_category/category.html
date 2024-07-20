@@ -8,8 +8,8 @@
 
 <div class="create_category text-white text-end m-3">
     <h2>Create a new CyberSecurity Category </h2>
-    <form class="category_form" action="{% url 'category' %}" method="POST" enctype="multipart/form-data">
-        {{ form | crispy }}
+    <form class="category_form" action="{% url 'category' %}" method="POST">
+        {{ category_form | crispy }}
         {% csrf_token %}
         <button class="btn btn-primary" type="submit">Create Category</button>
     </form>

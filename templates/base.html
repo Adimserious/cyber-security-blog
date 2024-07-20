@@ -4,7 +4,7 @@
 
 {% url 'about_page' as about_url %}
 
-{% url 'category' as category_url %}
+{% url 'create_category' as create_category_url %}
 
 {% url 'create' as create_url %}
 
@@ -87,7 +87,7 @@
                     <ul>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                             <button class="dropdown-item" type="button">
-                                <a href="{% url 'category' %}">Category </a>
+                                <a href="{% url 'create_category' %}">Add_Category </a>
                             </button>
                             <button class="dropdown-item" type="button"><a
                                     class=" {% if request.path == about_url %}active{%endif%}" aria-current="page"

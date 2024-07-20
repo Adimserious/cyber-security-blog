@@ -1,9 +1,8 @@
 from django.db import models
 
-# Create your models here.
-class Category(models.Model):
+class CreateCategory(models.Model):
     """
-    Category model
+    Create Category model
     """
     name = models.CharField(max_length=200)
     

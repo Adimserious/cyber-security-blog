@@ -3,8 +3,7 @@ from django.urls import path
 
 
 urlpatterns = [
-    
-    path('', views.Category, name='category'),
+    path('', views.CreateCategory, name='create_category'),
 ]
 
 
