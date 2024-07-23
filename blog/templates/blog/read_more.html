@@ -34,6 +34,9 @@
                 <p>{% if user.is_authenticated and post.author == user %}
                     <button class="btn btn-primary" post_id="{{ post.id }}">Edit Post</button>
                     {% endif %}
+                    {% if user.is_authenticated and post.author == user %}
+                    <button class="btn btn-danger" post_id="{{ post.id }}">Delete Post</button>
+                    {% endif %}
                 </p>
             </div>
         </div>
@@ -78,10 +81,16 @@
                         This comment is awaiting approval
                     </p>
                     {% endif %}
-
+                    
+                    <!-- Editing comments -->
                     {% if user.is_authenticated and comment.author == user %}
                     <!-- comment_id is a custom attribute-->
-                    <button class="btn btn-primary edit_btn" comment_id="{{ comment.id }}">Edit Comment</button>
+                    <button class="btn btn-primary" comment_id="{{ comment.id }}">Edit Comment</button>
+                    {% endif %}
+                    <!-- Deleting comments -->
+                    {% if user.is_authenticated and comment.author == user %}
+                    <!-- comment_id is a custom attribute-->
+                    <button class="btn btn-danger" comment_id="{{ comment.id }}">Delete Comment</button>
                     {% endif %}
                 </div>
                 <!-- for loop ends here -->

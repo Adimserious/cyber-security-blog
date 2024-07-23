@@ -13,6 +13,7 @@ Our focus and goal is to provide comprehensive and up-to-date information on a w
   - Introduction
   - Overview
   - UX - User Experience
+   - Structural plane
   - Design Aesthetic
     - Colour Scheme
     - Typography
@@ -28,7 +29,6 @@ Our focus and goal is to provide comprehensive and up-to-date information on a w
      - user stories
      - Epics
 - Scope plan
-- Structural plane
 - Skeleton and surface 
     - wireframes
 - Database Schema
@@ -81,7 +81,7 @@ We are committed to delivering high-quality content that educates, informs, and 
 
 ## UX - User Experience
 The US design of Cybersecurity Mindset blog is a balance between an engaging, user-friendly interface and ensuring security best practices. Here's the UX design outline:
-
+## Structural plane
 ### 1. Homepage
 
 Header:
@@ -145,7 +145,7 @@ Accessibility:
 - Typography: There is a Clear and readable fonts, with a good contrast against the background.
 - Visual Elements: relevant and high-quality images is used to enhance content.
 
-
+## Project planning
 ## Agile methodology project Management with Github 
 CyberSecurity Mindset adopted the Agile methodology project Management with GitHub using GitHub's features which emphasize flexibility, collaboration, and iterative progress. Here's a comprehensive explanation of some of the features i used for the Cybersecurity Mindset blog to manage an agile project using GitHub:
 
@@ -180,5 +180,49 @@ CyberSecurity Mindset adopted the Agile methodology project Management with GitH
 - Progress Tracking: The progress of milestones were tracked by monitoring the number of completed issues versus the total number of issues.
 
 - README: Each repository typically has a README file that provides an overview of the project, setup instructions, and other important information.
+
+## user stories
+
+User stories are a fundamental element of Agile development, focusing on the needs and experiences of end-users. They are short, simple descriptions of a feature told from the perspective of the person who desires the new capability, usually a user or customer of the system. Here is the link to the Cybersecurity Mindset user stories...
+
+## Epics
+
+An epic in Agile methodology is a large body of work that can be broken down into smaller tasks or user stories. Epics often span multiple sprints and sometimes even projects, providing a high-level view of significant features or functionalities. Here's a detailed overview of epics
+
+## Scope plan
+
+- *Purpose*: Cybersecurity Mindset aims to educate and raise awareness about cybersecurity threats, best practices, and technologies. Also aims to provide updates on the latest cybersecurity trends, news, and incidents as well as to share knowledge and help others develop their skills in cybersecurity.
+
+### Target 
+
+Audience Cybersecurity professionals, IT teams, tech-savvy readers General public, businesses, students, and professionals.
+
+### Goal 
+1. Increase the general public’s understanding of cybersecurity threats and best practices.
+2. Keep readers informed about the latest developments, trends, and news in cybersecurity.
+3. Create a space for like-minded individuals to connect, share knowledge, and discuss cybersecurity topics.
+4. Provide resources and guidance for individuals seeking to advance their careers in cybersecurity.
+5. Share knowledge and help others develop their skills in cybersecurity etc.
+
+
+### User Needs
+1. Access to update on the latest cybersecurity threats, trends, and news.
+2. Ability to understand and implement cybersecurity best practices for personal or organizational security.
+3. To advance their careers in cybersecurity through continuous learning and skill development.
+
+## Skeleton and surface 
+### Wireframes
+Figma was used to design the Cybersecurity Mindset
+
+Home page Wireframe
+
+Read more wireframe
+
+About page Wireframe
+
+Contact page Wireframe
+
+## Database Schema
+
 
 

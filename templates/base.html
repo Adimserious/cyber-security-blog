@@ -52,7 +52,7 @@
             </div>
 
             <ul class="nav nav-pills nav-fill">
-                <li class="text-end m-3">
+                <li class="">
                     <a class="nav-link text-white {% if request.path == home_url %}active{% endif %}"
                         href="{% url 'home' %}">Home</a>
                 </li>
@@ -77,26 +77,27 @@
                 </li>
                 {% endif %}
 
+            
 
-
-                <div class="dropdown text-end m-3">
+                <div class="dropdown text-end m-4">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         More
                     </button>
-                    <ul>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <button class="dropdown-item" type="button">
-                                <a href="{% url 'create_category' %}">Add Category </a>
-                            </button>
-                            <button class="dropdown-item" type="button"><a
-                                    class=" {% if request.path == about_url %}active{%endif%}" aria-current="page"
-                                    href="{% url 'about_page' %}">About</a></button>
-                            <button class="dropdown-item" type="button"><a
-                                    class=" {% if request.path == contact %}active{%endif%}"
-                                    href="{% url 'contact' %}">Contact</a></button>
-                        </div>
-                    </ul>
+
+                    <div class="dropdown-menu bg-primary text-end m-1" aria-labelledby="dropdownMenu2">
+                        <button class="dropdown-item bg-transparent" type="button">
+                            <a class="text-white {% if request.path == create_category_url %}active{%endif%}"
+                                aria-current="page" href="{% url 'create_category' %}">Add Category </a>
+                        </button>
+                        <button class="dropdown-item bg-transparent" type="button"><a
+                                class="text-white {% if request.path == about_url %}active{%endif%}"aria-current="page"
+                                href="{% url 'about_page' %}">About</a></button>
+                        <button class="dropdown-item bg-transparent" type="button"><a
+                                class="text-white {% if request.path == contact %}active{%endif%}"
+                                href="{% url 'contact' %}">Contact</a></button>
+                    </div>
+
             </ul>
         </div>
 

@@ -61,11 +61,12 @@ def edit_post(request, slug, post_id):
         queryset = Blog_post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
         post = get_object_or_404(Blog_post, pk=post_id)
-
-        if post.is_valid() and post.author == request.user:
-            post =  post.save(commit=False)
-            # Associating a post being created with the logged in user 
-            post.author = request.user
+        edit_post = EditPost(data=request.POST, instance=post)
+        # Associating a post being created with the logged in user
+        if edit_post.is_valid() and post.author == request.user:
+            post =  edit_post.save(commit=False)
+            post.post = post
+            post.approved = False
             post.save()
             messages.add_message(
         request, messages.SUCCESS,

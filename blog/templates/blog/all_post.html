@@ -15,15 +15,19 @@
                             <div class="image-container">
                                 <div class="image-flash">
                                     <div class="
+                                        {% if not post.done and post.author == user %}faded{% elif not post.done %}
+                                        d-none {% endif %}">
+
                                         {% if not post.done and post.author == user %}
-                                        faded{% elif not post.done %}d-none{% endif %}">
-                                        {% if not post.done and post.author == user %}
-                                        <p class="done">
-                                            This post is awaiting approval
-                                        </p>
+                                        
+                                        <p class="text-primary">This post is awaiting approval</p>
+                                            
+                                        
                                         {% endif %}
+                                        
                                     </div>
                                     <p class="author">Author: {{ post.author }}</p>
+                                    <p class="category">Category: {{ post.category }}</p>
                                 </div>
                             </div>
                             <a href="{% url 'read_more' post.slug %}" class="post-link">
@@ -33,6 +37,13 @@
 
                             <hr />
                             <p class="card-text text-muted h6">{{ post.created }}
+                            </p>
+                            <p>{% if user.is_authenticated and post.author == user %}
+                                <button class="btn btn-primary" post_id="{{ post.id }}">Edit Post</button>
+                                {% endif %}
+                                {% if user.is_authenticated and post.author == user %}
+                                <button class="btn btn-danger" post_id="{{ post.id }}">Delete Post</button>
+                                {% endif %}
                             </p>
                         </div>
                     </div>
