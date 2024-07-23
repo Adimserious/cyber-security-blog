@@ -113,6 +113,10 @@ def read_more(request, slug,):
     post = get_object_or_404(queryset, slug=slug)
     comments = post.comments.all().order_by("-created")
     comment_no = post.comments.filter(approved=True).count()
+
+    likes = post.likes.all()
+    like_count = post.likes.count()
+    
     
 
     if request.method == "POST":
@@ -137,7 +141,9 @@ def read_more(request, slug,):
         {"post": post,
         "comments": comments,
         "comment_no": comment_no,
-        "comment_post": comment_post},
+        "comment_post": comment_post,
+        "like_count": like_count},
+
     )
 
 

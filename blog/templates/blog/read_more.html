@@ -42,7 +42,7 @@
                 
                 <form action="{% url 'like_post' slug=post.slug pk=post.id %}" method="POST">
                     {% csrf_token%}
-                    <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-primary btn-sm">Like</button>  {{ total_likes }}
+                    <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-primary btn-sm">Like</button> - {{ like_count }}Likes
                 </form>
                 <br>
                 <hr>
@@ -54,11 +54,11 @@
 
 
 
-    <!-- Displaying number of comments -->
+   <!-- Display number of comments -->
     <div class="row text-white">
         <div class="col-12">
             <strong class="text-white">
-                <i class="far fa-comments text-white"></i> {{ comment_no }}
+                <i class="far fa-comments text-white"></i> {{ comment_no }} 
             </strong>
         </div>
         <div class="col-12">

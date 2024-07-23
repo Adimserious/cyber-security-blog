@@ -2,6 +2,7 @@ from django import forms
 from . import models
 from cloudinary.models import CloudinaryField
 
+
 class CreatePost(forms.ModelForm):
     class Meta:
         model = models.Blog_post
