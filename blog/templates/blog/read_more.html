@@ -38,6 +38,15 @@
                     <button class="btn btn-danger" post_id="{{ post.id }}">Delete Post</button>
                     {% endif %}
                 </p>
+                <br>
+                
+                <form action="{% url 'like_post' slug=post.slug pk=post.id %}" method="POST">
+                    {% csrf_token%}
+                    <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-primary btn-sm">Like</button>  {{ total_likes }}
+                </form>
+                <br>
+                <hr>
+                <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
             </div>
         </div>
     </div>

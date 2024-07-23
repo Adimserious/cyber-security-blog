@@ -28,10 +28,14 @@ class Blog_post(models.Model):
     published = models.DateTimeField(default=timezone.now)
     updated = models.DateTimeField(auto_now=True)
     status = models.IntegerField(choices=STATUS_CHOICES, default=0)
-    category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name="blog_posts", default=1)
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name="blog_post", default=1)
+    likes = models.ManyToManyField(User, related_name="post_likes")
     # Meta data class with ordering attribute to sort result by the published field
     class Meta:
         ordering = ["-published"]
+
+    def  total_likes(self):
+        return self.likes.count()
     
     def __str__(self):
         return f"The title of this post is {self.title} | by {self.author}"

@@ -6,11 +6,21 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from . import forms
 from .forms import CommentPost
+from django.db.models import Count
 
 
 # Create your views here.
 
-
+def like_view(request, slug, pk):
+   # grap the post_id from the like button in read_more.html
+   post = get_object_or_404(Blog_post, id=request.POST.get('post_id'))
+   post.likes.add(request.user)
+   return render(
+        request,
+        "blog/read_more.html",
+        # this is a context to pass data from my view to template. the post object is used in the template as DTL variable
+        {"post": post,}
+    )
 
 class AllPost(generic.ListView):
     
@@ -89,7 +99,7 @@ class Category(generic.ListView):
 
 
 
-def read_more(request, slug):
+def read_more(request, slug,):
     """
     Display a detailed post
     
@@ -103,6 +113,7 @@ def read_more(request, slug):
     post = get_object_or_404(queryset, slug=slug)
     comments = post.comments.all().order_by("-created")
     comment_no = post.comments.filter(approved=True).count()
+    
 
     if request.method == "POST":
          comment_post = CommentPost(data=request.POST)
