@@ -47,7 +47,7 @@
                 {% if user.is_authenticated %}
                 <p class="text-end m-3 text-white text-right">You are logged in as {{ user }}</p>
                 {% else %}
-                <p class="text-end m-3 text-white text-right">Log in to create a post and leave a comment</p>
+                <p class="text-end m-3 text-white text-right">Log in to create a post, category and leave a comment</p>
                 {% endif %}
             </div>
 
@@ -59,20 +59,26 @@
 
                 {% if user.is_authenticated %}
                 <li class="nav-item nav-fill">
-                    <a class="nav-link text-white {% if request.path == contact %}active{%endif%}"
+                    <a class="nav-link text-white {% if request.path == create_url %}active{%endif%}"
                         href="{% url 'create' %}">Create post</a>
                 </li>
+
+                <li class="nav-item nav-fill">
+                    <a class="nav-link text-white {% if request.path == create_category_url %}active{%endif%}"
+                        href="{% url 'create_category' %}">Create category </a>
+                </li>
+
                 <li class="nav-item">
-                    <a class="nav-link text-white {% if request.path == contact %}active{%endif%}"
+                    <a class="nav-link text-white {% if request.path == account_logout_url %}active{%endif%}"
                         href="{% url 'account_logout' %}">Log out</a>
                 </li>
                 {% else %}
                 <li class="nav-item">
-                    <a class="nav-link text-white {% if request.path == contact %}active{%endif%}"
+                    <a class="nav-link text-white {% if request.path == account_signup_url %}active{%endif%}"
                         href="{% url 'account_signup' %}">Sign up</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white {% if request.path == contact %}active{%endif%}"
+                    <a class="nav-link text-white {% if request.path == account_login_url %}active{%endif%}"
                         href="{% url 'account_login' %}">Login</a>
                 </li>
                 {% endif %}
@@ -87,8 +93,8 @@
 
                     <div class="dropdown-menu bg-primary text-end m-1" aria-labelledby="dropdownMenu2">
                         <button class="dropdown-item bg-transparent" type="button">
-                            <a class="text-white {% if request.path == create_category_url %}active{%endif%}"
-                                aria-current="page" href="{% url 'create_category' %}">Add Category </a>
+                            <a class="text-white" 
+                                aria-current="page" href="#"> Search </a>
                         </button>
                         <button class="dropdown-item bg-transparent" type="button"><a
                                 class="text-white {% if request.path == about_url %}active{%endif%}"aria-current="page"

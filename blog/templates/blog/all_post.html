@@ -15,15 +15,8 @@
                             <div class="image-container">
                                 <div class="image-flash">
                                     <div class="
-                                        {% if not post.done and post.author == user %}faded{% elif not post.done %}
-                                        d-none {% endif %}">
-
-                                        {% if not post.done and post.author == user %}
-                                        
-                                        <p class="text-warning">This post is awaiting approval</p>
-                                            
-                                        
-                                        {% endif %}
+                                        {% if not post.done %}
+                                        d-none{% endif %}">
                                         
                                     </div>
                                     <p class="author">Author: {{ post.author }}</p>
@@ -38,13 +31,7 @@
                             <hr />
                             <p class="card-text text-muted h6">{{ post.created }}
                             </p>
-                            <p>{% if user.is_authenticated and post.author == user %}
-                                <button class="btn btn-primary" post_id="{{ post.id }}">Edit Post</button>
-                                {% endif %}
-                                {% if user.is_authenticated and post.author == user %}
-                                <button class="btn btn-danger" post_id="{{ post.id }}">Delete Post</button>
-                                {% endif %}
-                            </p>
+                            
                         </div>
                     </div>
                 </div>

@@ -194,4 +194,4 @@ def create_category(request):
     else:
         category_form = forms.CreatCategory()
         # new instance of the create category form to render to the user
-    return render(request, 'create_category/category.html', {'category_form': category_form})
+    return render(request, 'blog/create_category.html', {'category_form': category_form})
