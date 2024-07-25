@@ -24,7 +24,7 @@ def like_view(request, slug, pk):
 
 class AllPost(generic.ListView):
     
-    queryset = Blog_post.objects.all()
+    queryset = Blog_post.objects.filter(status=1)
     template_name = "blog/all_post.html"
     paginate_by = 6
 
