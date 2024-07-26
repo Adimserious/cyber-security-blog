@@ -5,7 +5,7 @@ from .models import Blog_post, Category, Comment
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from . import forms
-from .forms import CommentPost
+from .forms import CommentPost, CreatePost
 from django.db.models import Count
 
 
@@ -21,6 +21,8 @@ def like_view(request, slug, pk):
         # this is a context to pass data from my view to template. the post object is used in the template as DTL variable
         {"post": post,}
     )
+
+
 
 class AllPost(generic.ListView):
     
@@ -61,31 +63,36 @@ def edit_comment(request, slug, comment_id):
 
 
 @login_required
-def edit_post(request, slug, post_id):
+def edit_post(request, pk):
     """
     Edit post view
     """
+    post = get_object_or_404(Blog_post, pk=pk)
 
     if request.method == "POST":
 
-        queryset = Blog_post.objects.filter(status=1)
-        post = get_object_or_404(queryset, slug=slug)
-        post = get_object_or_404(Blog_post, pk=post_id)
-        edit_post = EditPost(data=request.POST, instance=post)
+        form = CreatePost(request.POST, instance=post)
         # Associating a post being created with the logged in user
-        if edit_post.is_valid() and post.author == request.user:
-            post =  edit_post.save(commit=False)
+        if form.is_valid() and post.author == request.user:
+            
+            post =  form.save(commit=False)
             post.post = post
             post.approved = False
             post.save()
             messages.add_message(
         request, messages.SUCCESS,
         'All done! Post is Updated and is waiting approval')
-        elif request.user != post.author:
-            return redirect('read_more', args=[slug])
 
-        else:
-            messages.add_message(request, messages.ERROR, 'Error updating post!')
+        elif request.user != post.author:
+            return redirect('home')
+            
+            messages.add_message(request, messages.ERROR, 'Error updating comment!')
+    
+    else: 
+        form = CreatePost(instance=post)
+        return render(request, 'blog/create_post.html', {'form': form})
+
+        
 
 
 
@@ -149,7 +156,7 @@ def read_more(request, slug,):
 
 @login_required(login_url="/accounts/login/")  
 def create_post(request):
-    """
+    """ 
     Users create post
     
     **Template:**

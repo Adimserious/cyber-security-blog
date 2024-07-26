@@ -10,8 +10,7 @@ class CreatePost(forms.ModelForm):
 
 
 
-
-
+# this is the form for commenting on a post
 class CommentPost(forms.ModelForm):
     class Meta:
         model = models.Comment
