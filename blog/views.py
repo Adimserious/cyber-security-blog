@@ -62,7 +62,6 @@ def edit_comment(request, slug, comment_id):
 
 
 
-@login_required
 def edit_post(request, pk):
     """
     Edit post view
@@ -80,8 +79,9 @@ def edit_post(request, pk):
             post.approved = False
             post.save()
             messages.add_message(
-        request, messages.SUCCESS,
-        'All done! Post is Updated and is waiting approval')
+                request, messages.SUCCESS,
+                'All done! Post is Updated and is waiting approval')
+            return redirect('home')
 
         elif request.user != post.author:
             return redirect('home')
@@ -90,7 +90,8 @@ def edit_post(request, pk):
     
     else: 
         form = CreatePost(instance=post)
-        return render(request, 'blog/create_post.html', {'form': form})
+        return render(request, 'blog/edit_post.html', {'form': form})
+
 
         
 

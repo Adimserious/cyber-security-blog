@@ -4,21 +4,20 @@
 
 {% load crispy_forms_tags %}
 
-
-
-<div class="edit_post text-white text-end m-3">
-    <h2>Edit a post</h2>
-    <form class="post-form" action="{% url 'edit_post' %}" method="POST" enctype="multipart/form-data">
-        {{ form | crispy }}
-        {% csrf_token %}
-        <button class="btn btn-primary" type="submit">Edit Post</button>
-    </form>
+<div class="container mt-5 text-white text-end m-3">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6 my-5">
+            <h2>Update a CyberSecurity post</h2>
+            <form class="edit-form" method="POST" enctype="multipart/form-data">
+                {{ form | crispy }}
+                {% csrf_token %}
+                <p>Editing as: {{ user.username }}</p>
+                <button class="btn btn-primary" type="submit">Update</button>
+            </form>
+        </div>
+    </div>
 </div>
 
 
 
-{% endblock %}
-
-{% block extras %}
-<script src="{% static 'js/edit_post.js' %}"></script>
 {% endblock %}
