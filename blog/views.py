@@ -95,29 +95,30 @@ def edit_comment(request, pk):
     """
     Edit comments view
     """
-    post = get_object_or_404(Blog_post, pk=pk)
+    comment = get_object_or_404(Comment, pk=pk)
 
 
     if request.method == "POST":
 
-        queryset = Blog_post.objects.filter(status=1)
+        queryset = Comment.objects.filter(approved=True)
         
         
-        comment_post = CommentPost(data=request.POST, instance=post)
+        form = CommentPost(data=request.POST, instance=comment)
 
-        if comment_post.is_valid() and comment.author == request.user:
-            comment = comment_post.save(commit=False)
-            comment.post = post
+        if form.is_valid() and comment.author == request.user:
+            comment = form.save(commit=False)
+            comment.comment = comment
             comment.approved = False
             comment.save()
             messages.add_message(request, messages.SUCCESS, 'Comment Updated!')
-            return redirect('read_more')
+            return redirect('home')
 
         elif request.user != comment.author:
             return redirect('read_more')
 
-    else: 
-        return render(request, 'blog/edit_comment.html', {'comment_post': comment_post})
+    else:
+        form = CommentPost(instance=comment)
+        return render(request, 'blog/edit_comment.html', {'form': form})
     
 
 
