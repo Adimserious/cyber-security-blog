@@ -9,6 +9,7 @@ from .forms import CommentPost, CreatePost
 from django.db.models import Count
 
 
+
 # Create your views here.
 
 def like_view(request, slug, pk):
@@ -31,20 +32,62 @@ class AllPost(generic.ListView):
     paginate_by = 6
 
 
+class Category(generic.ListView):
+    queryset = Blog_post.objects.filter(author=1)
+    template_name = "blog/all_post.html"
+    paginate_by = 3
 
+
+class PostDeleteView(generic.DeleteView):
+    queryset = Blog_post.objects.filter(author=1)
+    template_name = "blog/delete_post.html"
+    success_url = '/'
+   
+    def test_funs(self):
+        post = self.get_object
+        if self.request.user == post.author:
+            return True
+        return False
+        messages.add_message(request, messages.SUCCESS, 'Post deleted!')
+        return HttpResponseRedirect(reverse('home'))
+        
+
+"""
+def delete_post(request, pk):
+    
+    view to delete post
+    
+
+    queryset = Blog_post.objects.filter(status=1)
+    post = get_object_or_404(Blog_post, pk=pk)
+
+    if post.author == request.user:
+        return render(request, 'blog/delete_post.html')
+        post.delete()
+        messages.add_message(request, messages.SUCCESS, 'Post deleted!')
+    elif request.user != post.author:
+        messages.add_message(request, messages.ERROR, 'You can only delete your own post!')
+
+    
+    else:
+        return HttpResponseRedirect(reverse('home'))
+
+"""
 
 @login_required
-def edit_comment(request, slug, comment_id):
+def edit_comment(request, pk):
     """
     Edit comments view
     """
+    post = get_object_or_404(Blog_post, pk=pk)
+
 
     if request.method == "POST":
 
         queryset = Blog_post.objects.filter(status=1)
-        post = get_object_or_404(queryset, slug=slug)
-        comment = get_object_or_404(Comment, pk=comment_id)
-        comment_post = CommentPost(data=request.POST, instance=comment)
+        
+        
+        comment_post = CommentPost(data=request.POST, instance=post)
 
         if comment_post.is_valid() and comment.author == request.user:
             comment = comment_post.save(commit=False)
@@ -52,12 +95,13 @@ def edit_comment(request, slug, comment_id):
             comment.approved = False
             comment.save()
             messages.add_message(request, messages.SUCCESS, 'Comment Updated!')
+            return redirect('read_more')
 
         elif request.user != comment.author:
-            return redirect('read_more', args=[slug])
+            return redirect('read_more')
 
-        else:
-            messages.add_message(request, messages.ERROR, 'Error updating comment!')
+    else: 
+        return render(request, 'blog/edit_comment.html', {'comment_post': comment_post})
     
 
 
@@ -80,7 +124,7 @@ def edit_post(request, pk):
             post.save()
             messages.add_message(
                 request, messages.SUCCESS,
-                'All done! Post is Updated and is waiting approval')
+                'All done! Post is Updated')
             return redirect('home')
 
         elif request.user != post.author:
@@ -91,18 +135,6 @@ def edit_post(request, pk):
     else: 
         form = CreatePost(instance=post)
         return render(request, 'blog/edit_post.html', {'form': form})
-
-
-        
-
-
-
-
-
-class Category(generic.ListView):
-    queryset = Blog_post.objects.filter(author=1)
-    template_name = "blog/all_post.html"
-    paginate_by = 3
 
 
 

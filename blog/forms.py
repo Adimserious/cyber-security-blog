@@ -9,10 +9,6 @@ class CreatePost(forms.ModelForm):
         fields = ['title', 'slug', 'image', 'body_content', 'snippet', 'category']
 
 
-
-
-
-
 # this is the form for commenting on a post
 class CommentPost(forms.ModelForm):
     class Meta:

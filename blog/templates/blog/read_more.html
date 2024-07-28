@@ -32,10 +32,10 @@
                     {{ post.created }}
                 </p>
                 <p>{% if user.is_authenticated and post.author == user %}
-                    <button class="btn btn-primary" post_id="{{ post.id }}">Edit</button>
-                    {% endif %}
-                    {% if user.is_authenticated and post.author == user %}
-                    <button class="btn btn-danger" post_id="{{ post.id }}">Delete Post</button>
+                    <a class="btn btn-primary" href="{% url 'edit_post' post.pk %}">Edit Post</a>{% endif %}
+                </p>
+                <p>{% if user.is_authenticated and post.author == user %}
+                    <a class="btn btn-danger" href="{% url 'delete_post' post.pk %}">Delete Post</a>
                     {% endif %}
                 </p>
                 <br>
@@ -93,8 +93,7 @@
                     
                     <!-- Editing comments -->
                     {% if user.is_authenticated and comment.author == user %}
-                    <!-- comment_id is a custom attribute-->
-                    <button class="btn btn-primary" comment_id="{{ comment.id }}">Edit Comment</button>
+                    <a class="btn btn-primary" href="{% url 'edit_comment' post.pk %}">Edit Comment</a>
                     {% endif %}
                     <!-- Deleting comments -->
                     {% if user.is_authenticated and comment.author == user %}
@@ -132,5 +131,4 @@
 
 {% block extras %}
 <script src="{% static 'js/edit_comments.js' %}"></script>
-<script src="{% static 'js/edit_post.js' %}"></script>
 {% endblock %}
