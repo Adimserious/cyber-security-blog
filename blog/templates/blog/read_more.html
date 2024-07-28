@@ -93,12 +93,11 @@
                     
                     <!-- Editing comments -->
                     {% if user.is_authenticated and comment.author == user %}
-                    <a class="btn btn-primary" href="{% url 'edit_comment' post.pk %}">Edit Comment</a>
+                    <a class="btn btn-primary" href="{% url 'edit_comment' comment.pk %}">Edit Comment</a>
                     {% endif %}
                     <!-- Deleting comments -->
                     {% if user.is_authenticated and comment.author == user %}
-                    <!-- comment_id is a custom attribute-->
-                    <button class="btn btn-danger" comment_id="{{ comment.id }}">Delete Comment</button>
+                    <a class="btn btn-danger" href="{% url 'delete_comment' comment.pk %}">Delete Comment</a>
                     {% endif %}
                 </div>
                 <!-- for loop ends here -->

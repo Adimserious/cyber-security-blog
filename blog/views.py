@@ -47,8 +47,24 @@ class PostDeleteView(generic.DeleteView):
         post = self.get_object
         if self.request.user == post.author:
             return True
+            messages.add_message(request, messages.SUCCESS, 'Post deleted!')
         return False
-        messages.add_message(request, messages.SUCCESS, 'Post deleted!')
+        
+        return HttpResponseRedirect(reverse('home'))
+
+
+class CommentDeleteView(generic.DeleteView):
+    queryset = Comment.objects.filter(author=1)
+    template_name = "blog/delete_comment.html"
+    success_url = '/'
+   
+    def test_funs(self):
+        comment = self.get_object
+        if self.request.user == comment.author:
+            return True
+            messages.add_message(request, messages.SUCCESS, 'Comment deleted!')
+        return False
+        
         return HttpResponseRedirect(reverse('home'))
         
 
