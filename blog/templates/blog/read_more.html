@@ -4,18 +4,22 @@
 {% load crispy_forms_tags %}
 
 <!-- Displaying title, author and image -->
-<div class="masthead">
+<div>
     <div class="container">
-        <div class="row g-0">
-            <div class="col-md-6 masthead-text">
+        <div class="row">
+            <div class="col">
                 <!-- Post title goes in these h1 tags -->
-                <h1 class="text-primary">{{ post.title }}</h1>
+                <h1 class="text-white bg-primary">{{ post.title }}</h1>
                 <!-- Post author goes in these p tags -->
-                <p class="post-subtitle text-white">By {{ post.author }}</p>
+                <p class="text-white">By {{ post.author }}</p>
+                {% if "placeholder" in post.image.url %}
+                <div><img src="{% static 'placeholder_images/placeholder.jpg' %}" class="img-fluid" alt="placeholder image"></div>
+                {% else %}
+                <div><img src="{{ post.image.url }}" class="img-fluid" alt="image"></div>
+                {% endif %}
+                
             </div>
-            <div class="d-none d-md-block col-md-6 masthead-image">
-                <img src="{% static '/placeholder.jpg' %}" class="img-fluid" alt="Responsive image">
-            </div>
+            
         </div>
     </div>
 </div>
