@@ -39,22 +39,26 @@ class Category(generic.ListView):
     paginate_by = 3
 
 
-class PostDeleteView(generic.DeleteView):
+
+class PostDeleteView(UserPassesTestMixin, generic.DeleteView):
     queryset = Blog_post.objects.filter(author=1)
     template_name = "blog/delete_post.html"
     success_url = '/'
    
-    def test_funs(self):
-        post = self.get_object
-        if self.request.user == post.author:
-            return True
-            messages.add_message(request, messages.SUCCESS, 'Post deleted!')
-        return False
+    def test_func(self):
+        if self.request.method == "POST":
+            post = self.get_object()
+            if self.request.user == post.author:
+                messages.add_message(self.request, messages.SUCCESS, 'Post deleted!')
+                print("post is deleted")
+                return True
+            
+            return False
         
         return HttpResponseRedirect(reverse('home'))
 
 
-class CommentDeleteView(UserPassesTestMixin, generic.DeleteView,):
+class CommentDeleteView(UserPassesTestMixin, generic.DeleteView):
     queryset = Comment.objects.filter(author=1)
     template_name = "blog/delete_comment.html"
     success_url = '/'
