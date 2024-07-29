@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect
 from . import forms
 from .forms import CommentPost, CreatePost
 from django.db.models import Count
+from django.contrib.auth.mixins import UserPassesTestMixin
 
 
 
@@ -53,42 +54,27 @@ class PostDeleteView(generic.DeleteView):
         return HttpResponseRedirect(reverse('home'))
 
 
-class CommentDeleteView(generic.DeleteView):
+class CommentDeleteView(UserPassesTestMixin, generic.DeleteView,):
     queryset = Comment.objects.filter(author=1)
     template_name = "blog/delete_comment.html"
     success_url = '/'
    
-    def test_funs(self):
-        comment = self.get_object
-        if self.request.user == comment.author:
-            return True
-            messages.add_message(request, messages.SUCCESS, 'Comment deleted!')
-        return False
+
+    def test_func(self):
+        if self.request.method == "POST":
+            comment = self.get_object()
+            if self.request.user == comment.author:
+                messages.add_message(self.request, messages.SUCCESS, 'Comment deleted!')
+                print("comment is deleted")
+                return True
+            
+            
+            return False
         
         return HttpResponseRedirect(reverse('home'))
         
 
-"""
-def delete_post(request, pk):
-    
-    view to delete post
-    
 
-    queryset = Blog_post.objects.filter(status=1)
-    post = get_object_or_404(Blog_post, pk=pk)
-
-    if post.author == request.user:
-        return render(request, 'blog/delete_post.html')
-        post.delete()
-        messages.add_message(request, messages.SUCCESS, 'Post deleted!')
-    elif request.user != post.author:
-        messages.add_message(request, messages.ERROR, 'You can only delete your own post!')
-
-    
-    else:
-        return HttpResponseRedirect(reverse('home'))
-
-"""
 
 @login_required
 def edit_comment(request, pk):
