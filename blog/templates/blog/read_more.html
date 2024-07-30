@@ -8,9 +8,9 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <!-- Post title goes in these h1 tags -->
+                <!-- Post title -->
                 <h1 class="text-white bg-primary">{{ post.title }}</h1>
-                <!-- Post author goes in these p tags -->
+                <!-- Post author -->
                 <p class="text-white">By {{ post.author }}</p>
                 {% if "placeholder" in post.image.url %}
                 <div><img src="{% static 'placeholder_images/placeholder.jpg' %}" class="img-fluid" alt="placeholder image"></div>

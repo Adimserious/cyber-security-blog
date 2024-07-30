@@ -229,7 +229,7 @@ A database schema is the blueprint or architecture of a database, defining how d
 - Entity Relationship Diagram (ERD)
 An Entity-Relationship Diagram (ERD) is a visual representation of the data and its relationships within a database. It is a critical tool in database design and modeling, helping to clarify the structure and organization of data. Here is an ERD diagram representation of the Cybersecurity Mindset.
 
-## Tables Overview 
+## Tables Overview ERD
 
 User:
 
@@ -243,7 +243,7 @@ About_page
 
 Contact:
 
-## Relationships 
+## ERD Relationships 
  - *One-to-Many (1:M)*: A single entity instance in one entity is related to multiple instances in another entity.
  This relationship exists between User and Blog_post, where User can author many Blog_post
 
@@ -254,5 +254,117 @@ Contact:
 - likes table ia linked to the Blog_post table in many-to-one relationship, where many likes can be associated with a single blog post
 
 
+## Security
+As with most things, Security is a critical aspect, especially for a platform Cybersecurity Mindset that handles user-generated content and personal data.
+
+### Data Encryption
+All sensitive data, including user passwords and personal information, are encrypted using robust encryption methods to protect against unauthorized access and breaches.
+
+### CSRF Tokens
+CSRF (Cross-Site Request Forgery) tokens are included in every form to help authenticate the request with the server when the form is submitted. Absence of these tokens can leave a site vulnerable to attackers who may steal users data and use them for malicious purposes.
+
+### AllAuth
+Django AllAuth is an installable framework that takes care of the user registration and authentication process. Authentication was needed to determine when a user have signed up or signed out which controlled what content was accessible on Cybersecurity Minset
+
+## Features 
+## Existing Features
+
+#### Home Page
+![Home Page Screenshot]()
+
+#### User Registration, Login, and Logout
+
+  - New users can sign up by providing their username, email, and password. Existing users can log in using their credentials to access personalized features.
+
+  **Registration/SignUp**
+      ![Sign Up Screenshot]()
+
+  **Login/SignIn**  
+      ![Login Screenshot]()
+
+  **Logout/Signout**
+      ![Logout Screenshot]()
+
+#### All Posts
+
+  - Content creators can view their posts through 'All Posts'. They can view all their contributions, and every other existing Cybersecurity posts.
+
+  ![All Posts Screenshot]()
+
+#### Create Post
+
+  - Registered users can contribute by creating their own Cybersecurity posts. They can include a title, slug, images,body content, snippet and select categories for their Post.
+
+  ![Create Post Screenshot]()
+
+#### Read More
+
+  - Users can read detailed views of each post, engage with content through likes, and comments.
+
+  ![Read More Screenshot]()
+
+#### Comments 
+
+  - Users can leave comments, engage in discussions, and provide feedback to authors.
+
+  ![Comments Screenshot]()
+
+#### Responsive Navigation Bar
+
+  - The navigation bar provides easy access to all sections of the site, adjusts for different screen sizes, and includes user authentication options.
+
+  ![Navigation Bar Screenshot]()
+
+#### Create Category
+
+  - Users can create new categories to add to the existing categories.
+
+  ![Categories Screenshot]()
+
+#### Likes
+
+    - The Likes feature allows users to revisit posts they have liked. This feature encourages users to engage with content and authors they appreciate.
+
+  ![ Likes Screenshot]()
+
+#### Pagination
+
+  - Users can navigate through multiple pages of content seamlessly with pagination controls. This feature ensures that the website remains uncluttered and enhances user experience by dividing content into manageable and orderly sections. Users can easily move between pages using 'Previous' or 'Next'  links seen at the buttom of the posts.
+
+  ![My Pagination Screenshot]()
+
+#### Footer
+
+  - The footer is consistent across the platform and offers additional navigation options, social media links, and legal information.
+
+  ![Footer Screenshot]()
+
+#### Admin Panel
+
+  - Administrators have access to a backend panel where they can manage users, Cybersecurity posts, categories, and comments.
+
+  ![Admin Panel Screenshot]()
+  
+###  Functionality
+Cybersecurity Mindset is a platform that allow users to engage with content across various Cybersecurity domains. Below is a table highlighting its features, detailing the level of access for registered up and unregistered users, and the CRUD (Create, Read, Update, Delete) functionalities available:
+
+| Feature                   | registered User Access   |   UnRegistered User Access     | CRUD Functionality               |
+|---------------------------|--------------------------|--------------------------------|----------------------------------|
+| **Landing Page**          | Viewable                 | Viewable                       | Read                             |
+| **Sign up**               | Unavailable              | Available                      | Create                           |
+| **Login**                 | Unavailable              | Available                      | Create/Read                      |
+| **Browse Posts**          | Viewable                 | Viewable                       | Read                             |
+| **Create Category**       | Available                | Unavailable                    | Create                           |
+| **Read More**             | Full Access (like,comment)| Limited Access                | Read/Create/Update/Delete        |
+| **Comment on Posts**      | Available                | Unavailable                    | Create/Read/Update/Delete        |
+| **Create New Post**       | Available                | Unavailable                    | Create                           |
+| **Edit/Delete Post**      | Available  (Own Posts)   | Unavailable                    | Update/Delete                    |
+| **Like Posts**            | Available                | Unavailable                    | Create                           |
+| **About**                 | Viewable                 | Viewable                       | Read                             |
+| **Comment on Posts**      | Available                | Unavailable                    | Create/Update/Delete             |
+| **Contact**               | Available                | Available                      | Read                             |
+| **Search**                | Available                | Available                      | Read                             |
 
 
+
+## Featue remaining to implement
