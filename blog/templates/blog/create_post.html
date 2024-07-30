@@ -12,7 +12,8 @@
                 {{ form | crispy }}
                 {% csrf_token %}
                 <p>Posting as: {{ user.username }}</p>
-                <button class="btn btn-primary" type="submit">Create</button>
+                <button class="btn btn-primary" type="submit">Create Post</button>
+                <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
             </form>
         </div>
     </div>

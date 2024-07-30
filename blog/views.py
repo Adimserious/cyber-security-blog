@@ -121,7 +121,7 @@ def edit_post(request, pk):
 
     if request.method == "POST":
 
-        form = CreatePost(request.POST, instance=post)
+        form = CreatePost(request.POST, request.FILES, instance=post)
         # Associating a post being created with the logged in user
         if form.is_valid() and post.author == request.user:
             
