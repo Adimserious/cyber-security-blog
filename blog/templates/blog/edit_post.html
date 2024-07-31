@@ -13,6 +13,7 @@
                 {% csrf_token %}
                 <p>Editing as: {{ user.username }}</p>
                 <button class="btn btn-primary" type="submit">Update</button>
+                <a class="btn btn-secondary" href="{% url 'home' %}">Cancel</a>
             </form>
         </div>
     </div>

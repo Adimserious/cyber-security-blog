@@ -1,11 +1,12 @@
 ## Introduction 
-CyberSecurity Mindset
+### CyberSecurity Mindset
 Welcome to Cybersecurity Mindset blog! Here, you'll find the latest insights, tips, and news to help you stay safe in the digital world. Whether you're a seasoned professional or just starting your journey in cybersecurity, our content is designed to inform and empower you. Join us as we explore the ever-evolving landscape of cyber threats and defenses. Stay informed, stay secure!
 
 Our focus and goal is to provide comprehensive and up-to-date information on a wide range of cybersecurity topics
 
-![Am I Responsive Image]()
-Link to live website: [CLICK HERE!]()
+![Am I Responsive Image](static/placeholder_images/am-i-resp.png)
+
+Link to live website: [CLICK HERE!](https://cybersecurity-blog-c42a16cdf7ab.herokuapp.com/about_page/)
 
 
 
@@ -86,9 +87,9 @@ The US design of Cybersecurity Mindset blog is a balance between an engaging, us
 
 Header:
 - The Logo is at the Top left corner.
-- Followed by the Navigation Menu: Home, Categories, About, Contact, Search (magnifying glass icon).
-- The Signup/Login page is at Top right corner.
-- The Create-post and Log-out is seen when a user has logged in, this allowers access to only login users.
+- Followed by the Navigation Menu: Home, Signup/Login page
+- The  About, Contact, Search (magnifying glass icon) is at the lower Top right corner.
+- The Create-post, Create Category, and Log-out is seen when a user has logged in, this allowers access to only login users.
 
 Hero Section:
 - The Featured Articles Slider Highlights the latest or most important posts.
@@ -141,7 +142,7 @@ Accessibility:
 - The site is accessible to users with disabilities, complying with WCAG standard.
 
 ## Design Aesthetic
-- Color Scheme: A Professional and clean shades of blue, gray, and white to convey trust and security.
+- Color Scheme: A Professional and clean shades of blue, gray, black and white to convey trust and security.
 - Typography: There is a Clear and readable fonts, with a good contrast against the background.
 - Visual Elements: relevant and high-quality images is used to enhance content.
 
@@ -212,15 +213,57 @@ Audience Cybersecurity professionals, IT teams, tech-savvy readers General publi
 
 ## Skeleton and surface 
 ### Wireframes
-Figma was used to design the Cybersecurity Mindset
+[Figma]() was used to design the Cybersecurity Mindset
 
 Home page Wireframe
+<details>
+<summary>Click to View Home Page wireframe</summary>
+
+![wireframes](static/placeholder_images/home-page.png)
+</details>
 
 Read more wireframe
+<details>
+<summary>Click to View Read More wireframe</summary>
+
+![wireframes](static/placeholder_images/read-more.png)
+</details>
 
 About page Wireframe
+<details>
+<summary>Click to View About Page wireframe</summary>
+
+![wireframes](static/placeholder_images/about.png)
+</details>
 
 Contact page Wireframe
+<details>
+<summary>Click to View Contact Page wireframe</summary>
+
+![wireframes](static/placeholder_images/contact.png)
+</details>
+
+
+Create Post page Wireframe
+<details>
+<summary>Click to View Create Post Page wireframe</summary>
+
+![wireframes](static/placeholder_images/create-post.png)
+</details>
+
+Sign up page Wireframe
+<details>
+<summary>Click to View Sign up Page wireframe</summary>
+
+![wireframes](static/placeholder_images/sign-up.png)
+</details>
+
+Sign in page Wireframe
+<details>
+<summary>Click to View Sign in Page wireframe</summary>
+
+![wireframes](static/placeholder_images/sign-in.png)
+</details>
 
 ## Database Schema
 
