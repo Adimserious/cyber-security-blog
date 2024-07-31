@@ -313,80 +313,80 @@ Django AllAuth is an installable framework that takes care of the user registrat
 ## Existing Features
 
 #### Home Page
-![Home Page Screenshot]()
+![Home Page Screenshot](static/placeholder_images/home-page-img.png)
 
 #### User Registration, Login, and Logout
 
   - New users can sign up by providing their username, email, and password. Existing users can log in using their credentials to access personalized features.
 
   **Registration/SignUp**
-      ![Sign Up Screenshot]()
+      ![Sign Up Screenshot](static/placeholder_images/sign-up-img.png)
 
   **Login/SignIn**  
-      ![Login Screenshot]()
+      ![Log in Screenshot](static/placeholder_images/log-in-img.png)
 
   **Logout/Signout**
-      ![Logout Screenshot]()
+      ![Log out Screenshot](static/placeholder_images/sign-out-img.png)
 
 #### All Posts
 
   - Content creators can view their posts through 'All Posts'. They can view all their contributions, and every other existing Cybersecurity posts.
 
-  ![All Posts Screenshot]()
+  ![List Of Posts Screenshot](static/placeholder_images/all-post.png)
 
 #### Create Post
 
   - Registered users can contribute by creating their own Cybersecurity posts. They can include a title, slug, images,body content, snippet and select categories for their Post.
 
-  ![Create Post Screenshot]()
+  ![Create Post Screenshot](static/placeholder_images/create-post-img.png)
 
 #### Read More
 
   - Users can read detailed views of each post, engage with content through likes, and comments.
 
-  ![Read More Screenshot]()
+  ![Read More Screenshot](static/placeholder_images/read-more-img.png)
 
 #### Comments 
 
   - Users can leave comments, engage in discussions, and provide feedback to authors.
 
-  ![Comments Screenshot]()
+  ![Comments Screenshot](static/placeholder_images/comments-img.png)
 
 #### Responsive Navigation Bar
 
   - The navigation bar provides easy access to all sections of the site, adjusts for different screen sizes, and includes user authentication options.
 
-  ![Navigation Bar Screenshot]()
+  ![Navigation Bar Screenshot](static/placeholder_images/nav-bar.png)
 
 #### Create Category
 
   - Users can create new categories to add to the existing categories.
 
-  ![Categories Screenshot]()
+  ![Create Category Screenshot](static/placeholder_images/create-cat-img.png)
 
 #### Likes
 
     - The Likes feature allows users to revisit posts they have liked. This feature encourages users to engage with content and authors they appreciate.
 
-  ![ Likes Screenshot]()
+  ![ Likes Screenshot](static/placeholder_images/likes-img.png)
 
 #### Pagination
 
   - Users can navigate through multiple pages of content seamlessly with pagination controls. This feature ensures that the website remains uncluttered and enhances user experience by dividing content into manageable and orderly sections. Users can easily move between pages using 'Previous' or 'Next'  links seen at the buttom of the posts.
 
-  ![My Pagination Screenshot]()
+  ![My Pagination Screenshot](static/placeholder_images/paginate-img.png)
 
 #### Footer
 
   - The footer is consistent across the platform and offers additional navigation options, social media links, and legal information.
 
-  ![Footer Screenshot]()
+  ![Footer Screenshot](static/placeholder_images/footer-img.png)
 
 #### Admin Panel
 
   - Administrators have access to a backend panel where they can manage users, Cybersecurity posts, categories, and comments.
 
-  ![Admin Panel Screenshot]()
+  ![Admin Panel Screenshot](static/placeholder_images/admin-img.png)
 
 ###  Functionality
 Cybersecurity Mindset is a platform that allow users to engage with content across various Cybersecurity domains. Below is a table highlighting its features, detailing the level of access for registered up and unregistered users, and the CRUD (Create, Read, Update, Delete) functionalities available:

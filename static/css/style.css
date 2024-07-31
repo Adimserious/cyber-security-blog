@@ -1,5 +1,5 @@
 body {
-    background: url("../placeholder_images/backgroung-img.jpg") 50% no-repeat fixed;
+    background: url("/static/placeholder_images/backgroung-img.jpg") 50% 0 no-repeat fixed;
     background-color: black;  
 }
 
