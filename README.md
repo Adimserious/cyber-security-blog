@@ -366,7 +366,7 @@ Django AllAuth is an installable framework that takes care of the user registrat
 
 #### Likes
 
-    - The Likes feature allows users to revisit posts they have liked. This feature encourages users to engage with content and authors they appreciate.
+  - The Likes feature allows users to revisit posts they have liked. This feature encourages users to engage with content and authors they appreciate.
 
   ![ Likes Screenshot](static/placeholder_images/likes-img.png)
 
@@ -410,7 +410,7 @@ Cybersecurity Mindset is a platform that allow users to engage with content acro
 
 
 
-## Featue remaining to implement
+## Features remaining to implement
 - The update and delete functionality for create category poage are the features remaining to implement due to time constraints.
 
 ## Technologies Used
@@ -506,8 +506,8 @@ replace app_name with the name of your primary Django app name; the folder where
 # Cloning and Forking
 ## Cloning the Repository
 - **Local Setup:**
-  1. Clone the repository: [GitHub repository](https://). 
- `git clone https://.
+  1. Clone the repository: [GitHub repository](https://github.com/Adimserious/cyber-security-blog). 
+ `git clone https://github.com/Adimserious/cyber-security-blog.
   2. Navigate into the project directory: `cd cybersecurity mindset`
   3. Install dependencies: `pip install -r requirements.txt`
   4. Set up local environment variables in a `.env` file.
@@ -516,7 +516,7 @@ replace app_name with the name of your primary Django app name; the folder where
 
 ## Forking the Repository
 - **For Contributions:**
-  1. Fork the repository on [GitHub repository](https://).
+  1. Fork the repository on [GitHub repository](https://github.com/Adimserious/cyber-security-blog).
   2. Clone your forked repository to your local machine.
   3. Follow the local setup steps as above.
   4. Make changes and push them back to your fork.
@@ -530,20 +530,20 @@ The following blogs/tutorials complemented my learning for this project:
 
 - [Django Docs](https://www.djangoproject.com/)
 - [Bootstrap Docs](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
-- [StackOverflow]()
-- [Codemy.com/youtube]()
-- [NetNinja/youtube]()
+- [StackOverflow](https://stackoverflow.com/questions/26185687/you-are-trying-to-add-a-non-nullable-field-new-field-to-userprofile-without-a)
+- [Codemy.com/youtube](https://www.youtube.com/watch?v=B40bteAMM_M&list=PLCC34OHNcOtr025c1kHSPrnP18YPB-NFi)
+- [NetNinja/youtube](https://www.youtube.com/watch?v=n-FTlQ7Djqc&list=PL4cUxeGkcC9ib4HsrXEYpQnTOTZE1x0uc)
 
 ## Media
 
 The following sites were used to gather the photographic media used:
-- [Pixabay]()
+- [Pixabay](https://pixabay.com/)
 
 ## Additional reading/tutorials/books/blogs
 
 - [Codeinstitute] PP4 walkthrough projects.
-- [Chatgpt]() for blog post contents
-- [software-stack]() for readme inspiration 
+- [Chatgpt](https://chatgpt.com/) for blog post contents
+- [software-stack](https://github.com/SwathiKeshavamurthy/SoftwareStacks-P4/blob/main/README.md) for readme inspiration 
 
 
 ## Acknowledgements
@@ -551,3 +551,4 @@ The following sites were used to gather the photographic media used:
 - Thank you to my Code Institute mentor **Mitko** for his positive support, guidance and advice.
 - Thanks to **Kristyna**, Cohort facilitator at Code Institute how she always there to give all the infromation needed to keep the positive energy.
 - Thanks to my **fellow students and slack community** for constantly inspiring and being there for each other to help in trouble.
+- Many Thanks to code institude tutor support, expecially Sarah. you all are amazing.
