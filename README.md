@@ -116,11 +116,11 @@ Article Content:
 
 
 
-### 3. Categories Page
+### 3. Create Category Page
 
 - Category Header: Clear title and brief description of the category.
-- Article List: Similar layout to the homepage with thumbnails and excerpts.
-- Pagination: For navigating through older posts.
+- Form: The form has input field for name of category.
+- Pagination: For navigating back to the homepage.
 
 ### 4. About Page
 
@@ -414,7 +414,11 @@ Cybersecurity Mindset is a platform that allow users to engage with content acro
 
 
 ## Features remaining to implement
-- The update and delete functionality for create category poage are the features remaining to implement due to time constraints.
+Due to time constraints, the following features are remaining to implement
+- The update and delete functionality for create category poage.
+Hero Section:
+- The Featured Articles Slider Highlights the latest or most important posts.
+- The Search Bar is Prominent and centrally located for easy access.
 
 ## Technologies Used
 ### Frontend
