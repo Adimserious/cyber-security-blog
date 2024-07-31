@@ -147,6 +147,9 @@ Accessibility:
 - Visual Elements: relevant and high-quality images is used to enhance content.
 
 ## Project planning
+![GitHub repository for issues and project planning ](https://github.com/users/Adimserious/projects/4)
+![GitHub repository for issues and project planning image](static/placeholder_images/github-issues.png)
+
 ## Agile methodology project Management with Github 
 CyberSecurity Mindset adopted the Agile methodology project Management with GitHub using GitHub's features which emphasize flexibility, collaboration, and iterative progress. Here's a comprehensive explanation of some of the features i used for the Cybersecurity Mindset blog to manage an agile project using GitHub:
 
