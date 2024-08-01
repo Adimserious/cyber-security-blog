@@ -5,7 +5,7 @@ from .models import Blog_post, Category, Comment
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from . import forms
-from .forms import CommentPost, CreatePost
+from .forms import CommentPost, CreatePost, PostSearchForm
 from django.db.models import Count
 from django.contrib.auth.mixins import UserPassesTestMixin
 
@@ -24,6 +24,20 @@ def like_view(request, slug, pk):
         {"post": post,}
     )
 
+def post_search(request):
+    """
+    Search view
+    """
+    form = PostSearchForm()
+    q = ''
+    results = []
+    if 'q' in request.GET:
+        form = PostSearchForm(request.GET)
+        if form.is_valid():
+            q = form.cleaned_data['q']
+            results = Blog_post.objects.filter(title__contains=q)
+
+    return render(request, 'blog/search.html', {'form': form, 'q': q, 'results': results})
 
 
 class AllPost(generic.ListView):

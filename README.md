@@ -6,7 +6,7 @@ Our focus and goal is to provide comprehensive and up-to-date information on a w
 
 ![Am I Responsive Image](static/placeholder_images/am-i-resp.png)
 
-Link to live website: [CLICK HERE!](https://cybersecurity-blog-c42a16cdf7ab.herokuapp.com/about_page/)
+Link to live website: [CLICK HERE!](https://cybersecurity-blog-c42a16cdf7ab.herokuapp.com/)
 
 
 

@@ -20,3 +20,6 @@ class CreatCategory(forms.ModelForm):
     class Meta:
         model = models.Category
         fields = ("name",)
+
+class PostSearchForm(forms.Form):
+    q = forms.CharField()

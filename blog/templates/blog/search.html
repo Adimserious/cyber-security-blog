@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if q %}
+<h1 class="text-white">Posts containing "{{ q }}"</h1>
+<p class="text-white">
+    {% with resuls.count as total_results %}
+    Found {{ total_results }} result{{ total_results|pluralize }}
+    {% endwith %}
+</p>
+
+
+{% for post in results %}
+<h4><a href="{{post.get_absolutely_url }}">{{ post.title }}</a></h4>
+{% empty %}
+<p class="text-white">No resuls Found.</p>
+<p><a href="{% url 'post_search' %}" class="btn bg-primary text-white" role="button" arial-disabled="true">New Search</a></p>
+{% endfor %}
+
+{% else %}
+
+<div class="container mt-5 text-white text-end m-3">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6 my-5">
+            <h2>Search</h2>
+            <form class="" method="GET">
+                {{ form }}
+                {% csrf_token %}
+                <input class="btn btn-primary" type="submit" value="Search">
+                
+                
+                <a class="btn btn-secondary" href="{% url 'home' %}">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endif %}
+{% endblock %}
