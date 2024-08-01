@@ -277,17 +277,35 @@ An Entity-Relationship Diagram (ERD) is a visual representation of the data and 
 
 ## Tables Overview ERD
 
-User:
+User: Django provides a default User model through django.contrib.auth.models.User, which can be extended if necessary. This stores information like The username, optional email  and password  for the Cybersecurity Mindset blog.
 
-Blog_post
+Blog_post: A model or table representing individual blog posts including 
+title 
+slug
+image 
+content
+author 
+published_date
+published_time 
+category
 
-Comment:
+Comment: A model or table storing for comments on blog posts including 
+Blog_post 
+user 
+content 
+created
 
-Category:
+Category: A model or table representing categories for blog posts including the field 'Name' only.
 
-About_page
+About_page: A model or table for the about page content with the fields 
+title 
+content 
+updated_at
 
-Contact:
+Contact: A model for managing contact form submissions with the fields 
+name 
+email 
+message
 
 ## ERD Relationships 
  - *One-to-Many (1:M)*: A single entity instance in one entity is related to multiple instances in another entity.
@@ -375,19 +393,20 @@ Django AllAuth is an installable framework that takes care of the user registrat
 
 #### Pagination
 
-  - Users can navigate through multiple pages of content seamlessly with pagination controls. This feature ensures that the website remains uncluttered and enhances user experience by dividing content into manageable and orderly sections. Users can easily move between pages using 'Previous' or 'Next'  links seen at the buttom of the posts.
+ - Users can navigate through multiple pages of content seamlessly with pagination controls. This feature ensures that the website remains uncluttered 
+   and enhances user experience by dividing content into manageable and orderly sections. Users can easily move between pages using 'Previous' or 'Next'  links seen at the buttom of the posts.
 
   ![My Pagination Screenshot](static/placeholder_images/paginate-img.png)
 
 #### Footer
 
-  - The footer is consistent across the platform and offers additional navigation options, social media links, and legal information.
+ - The footer is consistent across the platform and offers additional navigation options, social media links, and legal information.
 
   ![Footer Screenshot](static/placeholder_images/footer-img.png)
 
 #### Admin Panel
 
-  - Administrators have access to a backend panel where they can manage users, Cybersecurity posts, categories, and comments.
+ - Administrators have access to a backend panel where they can manage users, Cybersecurity posts, categories, and comments.
 
   ![Admin Panel Screenshot](static/placeholder_images/admin-img.png)
 
