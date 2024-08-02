@@ -38,7 +38,8 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
 
-    <link rel="stylesheet" href="https://res.cloudinary.com/diljenpjx/image/upload/v1722456110/cyber-7930967_1280_1_af8uqc.jpg">
+    <link rel="stylesheet"
+        href="https://res.cloudinary.com/diljenpjx/image/upload/v1722456110/cyber-7930967_1280_1_af8uqc.jpg">
 </head>
 
 <body>
@@ -51,7 +52,7 @@
                 {% if user.is_authenticated %}
                 <p class="text-end m-3 text-white text-right">You are logged in as {{ user }}</p>
                 {% else %}
-                <p class="text-end m-3 text-white text-right">Log in to create a post, category and leave a comment</p>
+                <p class="text-end m-3 text-white text-right">Log in to create a post and leave a comment</p>
                 {% endif %}
             </div>
 
@@ -87,29 +88,32 @@
                 </li>
                 {% endif %}
 
-            
-
-                <div class="dropdown text-end m-4">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        More
-                    </button>
-
-                    <div class="dropdown-menu bg-primary text-end m-1" aria-labelledby="dropdownMenu2">
-                        <button class="dropdown-item bg-transparent" type="button">
-                            <a class="text-white {% if request.path == search_url %}active{%endif%}" 
-                                aria-current="page" href="{% url 'post_search' %}"> Search </a>
-                        </button>
-                        <button class="dropdown-item bg-transparent" type="button"><a
-                                class="text-white {% if request.path == about_url %}active{%endif%}"aria-current="page"
-                                href="{% url 'about_page' %}">About</a></button>
-                        <button class="dropdown-item bg-transparent" type="button"><a
-                                class="text-white {% if request.path == contact %}active{%endif%}"
-                                href="{% url 'contact' %}">Contact</a></button>
-                    </div>
-
             </ul>
-        </div>
+
+
+            <div class="dropdown float-right">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+
+                <div class="dropdown-menu bg-primary text-end m-1" aria-labelledby="dropdownMenu2">
+                    <div class="dropdown-item bg-transparent">
+                        <a class="text-white {% if request.path == search_url %}active{%endif%}" aria-current="page"
+                            href="{% url 'post_search' %}"> Search </a>
+                    </div>
+                    <div class="dropdown-item bg-transparent"><a
+                            class="text-white {% if request.path == about_url %}active{%endif%}" aria-current="page"
+                            href="{% url 'about_page' %}">About</a>
+                    </div>
+                    <div class="dropdown-item bg-transparent"><a
+                            class="text-white {% if request.path == contact %}active{%endif%}"
+                            href="{% url 'contact' %}">Contact</a>
+                    </div>
+                </div>
+
+
+            </div>
 
         </div>
     </header>
@@ -153,7 +157,8 @@
                     </li>
                 </ul>
                 <h4 class="m-0 text-center text-white">Inspired by my Love for Security</h4>
-                <p class="m-0 text-center text-white">Copyright © | Cybersecurity Mindset | Educational Purpose Only | Code Institute | 2024</p>
+                <p class="m-0 text-center text-white">Copyright © | Cybersecurity Mindset | Educational Purpose Only |
+                    Code Institute | 2024</p>
             </div>
         </footer>
     </div>

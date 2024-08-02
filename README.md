@@ -91,9 +91,9 @@ Header:
 - The  About, Contact, Search (magnifying glass icon) is at the lower Top right corner.
 - The Create-post, Create Category, and Log-out is seen when a user has logged in, this allowers access to only login users.
 
-Hero Section:
+Hero Section: (not yet included)
 - The Featured Articles Slider Highlights the latest or most important posts.
-- The Search Bar is Prominent and centrally located for easy access.
+- The Search Bar is Prominent and located at the top right in the More dropdown for easy access.
 
 Main Content:
 - Shows a list view of recent Blog_posts with authors, titles, excerpts, publication dates and time.
@@ -216,7 +216,7 @@ Audience Cybersecurity professionals, IT teams, tech-savvy readers General publi
 
 ## Skeleton and surface 
 ### Wireframes
-[Figma]() was used to design the Cybersecurity Mindset
+[Figma](https://www.figma.com/) was used to design the Cybersecurity Mindset
 
 Home page Wireframe
 <details>
@@ -436,8 +436,8 @@ Cybersecurity Mindset is a platform that allow users to engage with content acro
 Due to time constraints, the following features are remaining to implement
 - The update and delete functionality for create category poage.
 Hero Section:
-- The Featured Articles Slider Highlights the latest or most important posts.
-- The Search Bar is Prominent and centrally located for easy access.
+- The Featured Articles Slider Highlights to the latest or most important posts.
+
 
 ## Technologies Used
 ### Frontend
