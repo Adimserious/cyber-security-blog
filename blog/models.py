@@ -5,7 +5,8 @@ from cloudinary.models import CloudinaryField
 
 class Category(models.Model):
     """
-    Category model
+    Category model stores category for various blog post related to model: 
+    
     """
     name = models.CharField(max_length=200)
     
@@ -18,6 +19,9 @@ STATUS_CHOICES = ((0, 'pending'), (1, "done"))
 
 # Create your models here.
 class Blog_post(models.Model):
+    """
+    This model stores individual blog post related to model: auth.User
+    """
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="blog_post")
     image = CloudinaryField("image", default='placeholder')
     title = models.CharField(max_length=250, unique=True)
@@ -43,6 +47,9 @@ class Blog_post(models.Model):
 
 
 class Comment(models.Model):
+    """
+    This model stores comments on individual blog post related to model: auth.User and model: blog.Blog_post
+    """
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="commenters")
     post = models.ForeignKey(Blog_post, on_delete=models.CASCADE, related_name="comments") 
     content = models.TextField()

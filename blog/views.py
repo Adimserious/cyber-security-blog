@@ -1,19 +1,18 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.views import generic
 from django.contrib import messages
-from .models import Blog_post, Category, Comment
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from . import forms
-from .forms import CommentPost, CreatePost, PostSearchForm
 from django.db.models import Count
 from django.contrib.auth.mixins import UserPassesTestMixin
-
-
+from .models import Blog_post, Category, Comment
+from .forms import CommentPost, CreatePost, PostSearchForm
+from . import forms
 
 # Create your views here.
 
 def like_view(request, slug, pk):
+
    # grap the post_id from the like button in read_more.html
    post = get_object_or_404(Blog_post, id=request.POST.get('post_id'))
    post.likes.add(request.user)
@@ -39,21 +38,21 @@ def post_search(request):
 
     return render(request, 'blog/search.html', {'form': form, 'q': q, 'results': results})
 
-
+# This is the post list class view
 class AllPost(generic.ListView):
     
     queryset = Blog_post.objects.filter(status=1)
     template_name = "blog/all_post.html"
     paginate_by = 6
 
-
+# This is the Category class view
 class Category(generic.ListView):
     queryset = Blog_post.objects.filter(author=1)
     template_name = "blog/all_post.html"
     paginate_by = 3
 
 
-
+# This is the delete post class view
 class PostDeleteView(UserPassesTestMixin, generic.DeleteView):
     queryset = Blog_post.objects.filter(author=1)
     template_name = "blog/delete_post.html"
@@ -64,14 +63,13 @@ class PostDeleteView(UserPassesTestMixin, generic.DeleteView):
             post = self.get_object()
             if self.request.user == post.author:
                 messages.add_message(self.request, messages.SUCCESS, 'Post deleted!')
-                print("post is deleted")
                 return True
             
             return False
         
         return HttpResponseRedirect(reverse('home'))
 
-
+# This is the delete comments class view
 class CommentDeleteView(UserPassesTestMixin, generic.DeleteView):
     queryset = Comment.objects.filter(author=1)
     template_name = "blog/delete_comment.html"
@@ -83,7 +81,6 @@ class CommentDeleteView(UserPassesTestMixin, generic.DeleteView):
             comment = self.get_object()
             if self.request.user == comment.author:
                 messages.add_message(self.request, messages.SUCCESS, 'Comment deleted!')
-                print("comment is deleted")
                 return True
             
             

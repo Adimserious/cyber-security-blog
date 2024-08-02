@@ -5,7 +5,7 @@ from .forms import RequestContactForm
 # Create your views here.
 def contact_me(request):
     """
-    Renders the Contact page
+    Renders the Contact page for getting in touch and staying connected.
     """
     if request.method == "POST":
         contact_form = RequestContactForm(data=request.POST)

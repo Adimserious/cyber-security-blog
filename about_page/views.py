@@ -4,7 +4,7 @@ from .models import About_page
 # Create your views here.
 def about_page(request):
     """
-    Renders the About_page
+    Renders the updated information of the Cybersecurity Mindset.
     """
    
     about = About_page.objects.all().order_by('-updated').first()
