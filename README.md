@@ -185,7 +185,7 @@ CyberSecurity Mindset adopted the Agile methodology project Management with GitH
 
 - README: Each repository typically has a README file that provides an overview of the project, setup instructions, and other important information.
 
-## user stories
+## User stories
 
 User stories are a fundamental element of Agile development, focusing on the needs and experiences of end-users. They are short, simple descriptions of a feature told from the perspective of the person who desires the new capability, usually a user or customer of the system. Here is the link to the Cybersecurity Mindset user stories...
 

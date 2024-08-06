@@ -1,11 +1,12 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
 
+
 # Create your models here.
 class About_page(models.Model):
     """
     About model stores individual text related to the blog site.
-    
+
     """
     title = models.CharField(max_length=200)
     body_content = models.TextField()
@@ -13,4 +14,4 @@ class About_page(models.Model):
     profile_image = CloudinaryField('image', default='placeholder')
 
     def __str__(self):
-        return f"The title of this post is {self.title}"    
+        return f"The title of this post is {self.title}"

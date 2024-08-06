@@ -9,19 +9,21 @@ from .models import Blog_post, Category, Comment
 from .forms import CommentPost, CreatePost, PostSearchForm
 from . import forms
 
-# Create your views here.
+# views.
+
 
 def like_view(request, slug, pk):
-
    # grap the post_id from the like button in read_more.html
    post = get_object_or_404(Blog_post, id=request.POST.get('post_id'))
    post.likes.add(request.user)
    return render(
         request,
         "blog/read_more.html",
-        # this is a context to pass data from my view to template. the post object is used in the template as DTL variable
+        # This is a context to pass data from my view to template.
+        # The post object is used in the template as DTL variable
         {"post": post,}
     )
+
 
 def post_search(request):
     """
@@ -38,12 +40,14 @@ def post_search(request):
 
     return render(request, 'blog/search.html', {'form': form, 'q': q, 'results': results})
 
+
 # This is the post list class view
 class AllPost(generic.ListView):
-    
+  
     queryset = Blog_post.objects.filter(status=1)
     template_name = "blog/all_post.html"
     paginate_by = 6
+
 
 # This is the Category class view
 class Category(generic.ListView):
@@ -57,38 +61,35 @@ class PostDeleteView(UserPassesTestMixin, generic.DeleteView):
     queryset = Blog_post.objects.filter(author=1)
     template_name = "blog/delete_post.html"
     success_url = '/'
-   
+
     def test_func(self):
         if self.request.method == "POST":
             post = self.get_object()
             if self.request.user == post.author:
-                messages.add_message(self.request, messages.SUCCESS, 'Post deleted!')
+                messages.add_message(self.request, messages.SUCCESS,
+                 'Post deleted!')
                 return True
-            
+
             return False
-        
+
         return HttpResponseRedirect(reverse('home'))
+
 
 # This is the delete comments class view
 class CommentDeleteView(UserPassesTestMixin, generic.DeleteView):
     queryset = Comment.objects.filter(author=1)
     template_name = "blog/delete_comment.html"
     success_url = '/'
-   
 
     def test_func(self):
         if self.request.method == "POST":
             comment = self.get_object()
             if self.request.user == comment.author:
-                messages.add_message(self.request, messages.SUCCESS, 'Comment deleted!')
-                return True
-            
-            
+                messages.add_message(self.request, messages.SUCCESS,
+                 'Comment deleted!')
+            return True   
             return False
-        
         return HttpResponseRedirect(reverse('home'))
-        
-
 
 
 @login_required
@@ -102,8 +103,6 @@ def edit_comment(request, pk):
     if request.method == "POST":
 
         queryset = Comment.objects.filter(approved=True)
-        
-        
         form = CommentPost(data=request.POST, instance=comment)
 
         if form.is_valid() and comment.author == request.user:
@@ -120,8 +119,6 @@ def edit_comment(request, pk):
     else:
         form = CommentPost(instance=comment)
         return render(request, 'blog/edit_comment.html', {'form': form})
-    
-
 
 
 def edit_post(request, pk):
@@ -135,7 +132,7 @@ def edit_post(request, pk):
         form = CreatePost(request.POST, request.FILES, instance=post)
         # Associating a post being created with the logged in user
         if form.is_valid() and post.author == request.user:
-            
+
             post =  form.save(commit=False)
             post.post = post
             post.approved = False
@@ -147,14 +144,12 @@ def edit_post(request, pk):
 
         elif request.user != post.author:
             return redirect('home')
-            
+
             messages.add_message(request, messages.ERROR, 'Error updating comment!')
-    
+
     else: 
         form = CreatePost(instance=post)
         return render(request, 'blog/edit_post.html', {'form': form})
-
-
 
 
 def read_more(request, slug,):
@@ -174,8 +169,6 @@ def read_more(request, slug,):
 
     likes = post.likes.all()
     like_count = post.likes.count()
-    
-    
 
     if request.method == "POST":
          comment_post = CommentPost(data=request.POST)
@@ -191,11 +184,11 @@ def read_more(request, slug,):
     )
     comment_post = CommentPost()
 
-
     return render(
         request,
         "blog/read_more.html",
-        # this is a context to pass data from my view to template. the post object is used in the template as DTL variable
+        # This is a context to pass data from my view to template.
+        # The post object is used in the template as DTL variable
         {"post": post,
         "comments": comments,
         "comment_no": comment_no,
@@ -227,13 +220,11 @@ def create_post(request):
     )
             return redirect('home')
 
-    
+
     else:
         # new instance of the create post form to render to the user
         form = forms.CreatePost()
     return render(request, 'blog/create_post.html', {'form': form})
-
-
 
 
 def create_category(request):
@@ -248,7 +239,7 @@ def create_category(request):
             category_form.save()
             messages.add_message(request, messages.SUCCESS, "All done, New category added! awaiting approval.")
             return redirect('home')
-    
+ 
     else:
         category_form = forms.CreatCategory()
         # new instance of the create category form to render to the user

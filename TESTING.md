@@ -9,10 +9,8 @@ Return back to the [README.md](README.md) file.
   - [Validation](#validation)
       - [HTML Validation](#html-validation)
       - [CSS Validation](#css-validation)
-      - [JavaScript Validation](#javascript-validation)
       - [Python Validation](#python-validation)
       - [CSS Validation](#css-validation-1)
-      - [JavaScript Validation](#javascript-validation-1)
       - [Lighthouse Scores](#lighthouse-scores)
       - [Wave Accessibility Evaluation](#wave-accessibility-evaluation)
   - [Manual Testing](#manual-testing)
@@ -38,10 +36,13 @@ To ensure that the Cybersecurity Mindset meets its requirements and performs its
 #### HTML Validation
 - **Tool Used:** [HTML W3C Markup Validator](https://validator.w3.org/)
 - **Purpose:** Validates the HTML code of the application to ensure it is free from syntax errors and adheres to the standards set by the World Wide Web Consortium (W3C).
-- **Process:** All HTML pages of the Software Stacks are checked through the W3C validator to identify and fix any markup errors or warnings.
+- **Process:** All HTML pages of the Cybersecurity Minset are checked through the W3C validator to identify and fix any markup errors or warnings.
 
 
 **HTML Validation Results**
+- **Errors** are the actual HTML issues that need to be fixed as they may affect the functionality or appearance of the website.
+- **Warnings** are generally suggestions for best practices, which are not critical but could improve the code efficiency or accessibility.
+
 
 I tried to fix this bug but couldn't see where its coming from then i learnt that its coming from summernote, i could not fix the errors yet.
 
@@ -73,12 +74,7 @@ I couldn't find where the trailing slash info is coming from.
 - **Purpose:** Ensures that the CSS code used across the platform adheres to the standards set by the W3C and is free of errors.
 - **Process:** The CSS files are submitted to the W3C CSS Validator. Corrections are made based on feedback to improve performance and cross-browser compatibility.
 
-![CSS Screenshot]()
-
-#### JavaScript Validation
-- **Tool Used:** [JSLint/JSHint](https://jshint.com/)
-- **Purpose:** To detect errors and potential problems in the JavaScript code, making sure that all scripts run efficiently and are error-free.
-- **Process:** JavaScript code is run through JSLint/JSHint to identify issues related to syntax, deprecated methods, and other inefficiencies.
+![CSS Screenshot](static/placeholder_images/css-test.png)
 
 
 #### Python Validation
@@ -86,17 +82,117 @@ I couldn't find where the trailing slash info is coming from.
 - **Purpose:** Analyzes Python source code to identify coding errors, enforce a coding standard, and look for code smells.
 - **Process:** Python code within Cybersecurity Mindset is analyzed with Pylint to ensure adherence to coding standards and to improve code quality.
 
+- Cybersecurity Project Module Python Validation Results**
+
+**settings.py**
+![screenshot]()
+
+**manage.py**
+![screenshot](static/placeholder_images/manage.py-linter.png)
+
+**asgi.py**
+![screenshot](static/placeholder_images/asgi-lh.png)
+
+**wsgi.py**
+![screenshot](static/placeholder_images/wsgi-lh.png)
+
+**urls.py**
+![screenshot](static/placeholder_images/cyber-url-linter.png)
+
+
+Blog Module Python Validation Results
+
+**views.py**
+![screenshot]()
+
+**models.py**
+![screenshot]()
+
+**forms.py**
+![screenshot](static/placeholder_images/blog-form.py-linter.png)
+
+**urls.py**
+![screenshot](static/placeholder_images/blog-url.py-linter.png)
+
+**admin.py**
+![screenshot](static/placeholder_images/blog-admin.py-linter.png)
+
+**apps.py**
+![screenshot](static/placeholder_images/blog-apps.py-linter.png)
+
+About_page Module Python Validation Results
+
+**views.py**
+![screenshot](static/placeholder_images/about-view.py-linter.png)
+
+**models.py**
+![screenshot](static/placeholder_images/about-model.py-linter.png)
+
+**urls.py**
+![screenshot](static/placeholder_images/about-url.py-linter.png)
+
+**admin.py**
+![screenshot](static/placeholder_images/about-admin.py-linter.png)
+
+**apps.py**
+![screenshot](static/placeholder_images/about-apps.py-linter.png)
+
+Contact Module Python Validation Results
+
+**views.py**
+![screenshot](static/placeholder_images/contact-view.py-linter.png)
+
+**models.py**
+![screenshot](static/placeholder_images/contact-model.py-linter.png)
+
+**forms.py**
+![screenshot](static/placeholder_images/contact-forms.py-linter.png)
+
+**urls.py**
+![screenshot](static/placeholder_images/contact-url.py-linter.png)
+
+**admin.py**
+![screenshot](static/placeholder_images/contact-admin.py-linter.png)
+
+**apps.py**
+![screenshot](static/placeholder_images/contact-apps.py-linter.png)
 
 #### Lighthouse Scores
 - **Tool Used:** [Google Lighthouse](https://en.wikipedia.org/wiki/Google_Lighthouse)
 - **Purpose:** To assess the quality of web pages in terms of performance, accessibility, progressive web apps, SEO, and best practices.
 - **Process:** Cybersecurity Mindset is tested with Google Lighthouse, which provides a detailed report on various aspects of the site’s performance and offers recommendations for improvement.
 
+**Home Page**
+![screenshot](static/placeholder_images/home-light-h.png)
+
+**Create Post**
+![screenshot](static/placeholder_images/create-post-lh.png)
+
+**Create Category**
+![screenshot](static/placeholder_images/create-cat-lh.png)
+
+**Sign Out**
+![screenshot](static/placeholder_images/sign-out-lh.png)
+
+**Search**
+![screenshot](static/placeholder_images/search-lh.png)
+
+**About Page**
+![screenshot](static/placeholder_images/about-lh.png)
+
+**Contact Page**
+![screenshot](static/placeholder_images/contact-lh.png)
+
+**Sign In**
+![screenshot](static/placeholder_images/signin-lh.png)
+**Sign up**
+![screenshot](static/placeholder_images/signup-lh.png)
+
 
 #### Wave Accessibility Evaluation
 - **Tool Used:** [Wave Web Accessibility Evaluation Tool](https://wave.webaim.org/)
 - **Purpose:** To ensure that the website is accessible to individuals with disabilities by identifying and suggesting fixes for web accessibility issues.
-- **Process:** The Wave tool evaluates each page of Software Stacks to ensure it complies with accessibility standards like WCAG and Section 508.
+- **Process:** The Wave tool evaluates each page of Cybersecurity Mindset to ensure it complies with accessibility standards like WCAG and Section 508.
 
 ![Wave Web Accessibility Evaluation Tool]
 
@@ -119,7 +215,7 @@ I couldn't find where the trailing slash info is coming from.
 
 ### Running the Tests
 
-To run the automated tests for Software Stacks, follow these steps:
+To run the automated tests for Cybersecurity Minset, follow these steps:
 
 1. Open your terminal or command prompt.
 2. Navigate to the root directory of the project where the `manage.py` file is located.
