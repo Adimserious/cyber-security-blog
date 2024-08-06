@@ -31,10 +31,10 @@
             <div class="card-body">
                 <!-- The post body content and date created goes inside the card-text. -->
                 <!-- The pipe symbol | safe filter inside the template tags is necessary to tell Django that its safe -->
-                <article>
+                <h6>
                     {{ post.body_content | safe }}
                     {{ post.created }}
-                </article>
+                </h6>
                 <p>{% if user.is_authenticated and post.author == user %}
                     <a class="btn btn-primary" href="{% url 'edit_post' post.pk %}">Edit Post</a>{% endif %}
                 </p>

@@ -58,40 +58,40 @@
 
             <ul class="nav nav-pills nav-fill">
                 <li class="">
-                    <a class="nav-link text-white {% if request.path == home_url %}active"  aria-current="page{% endif %}"
-                        href="{% url 'home' %}">Home</a>
+                    <a class="nav-link text-white {% if request.path == home_url %}active"
+                        aria-current="page{% endif %}" href="{% url 'home' %}">Home</a>
                 </li>
 
                 {% if user.is_authenticated %}
                 <li class="nav-item nav-fill">
-                    <a class="nav-link text-white {% if request.path == create_url %}active" aria-current="page{%endif%}"
-                        href="{% url 'create' %}">Create post</a>
+                    <a class="nav-link text-white {% if request.path == create_url %}active"
+                        aria-current="page{%endif%}" href="{% url 'create' %}">Create post</a>
                 </li>
 
                 <li class="nav-item nav-fill">
-                    <a class="nav-link text-white {% if request.path == create_category_url %}active"  aria-current="page{%endif%}"
-                        href="{% url 'create_category' %}">Create category </a>
+                    <a class="nav-link text-white {% if request.path == create_category_url %}active"
+                        aria-current="page{%endif%}" href="{% url 'create_category' %}">Create category </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white {% if request.path == account_logout_url %}active"  aria-current="page{%endif%}"
-                        href="{% url 'account_logout' %}">Log out</a>
+                    <a class="nav-link text-white {% if request.path == account_logout_url %}active"
+                        aria-current="page{%endif%}" href="{% url 'account_logout' %}">Log out</a>
                 </li>
                 {% else %}
                 <li class="nav-item">
-                    <a class="nav-link text-white {% if request.path == account_signup_url %}active" aria-current="page{%endif%}"
-                        href="{% url 'account_signup' %}">Sign up</a>
+                    <a class="nav-link text-white {% if request.path == account_signup_url %}active"
+                        aria-current="page{%endif%}" href="{% url 'account_signup' %}">Sign up</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white {% if request.path == account_login_url %}active"  aria-current="page{%endif%}"
-                        href="{% url 'account_login' %}">Login</a>
+                    <a class="nav-link text-white {% if request.path == account_login_url %}active"
+                        aria-current="page{%endif%}" href="{% url 'account_login' %}">Login</a>
                 </li>
                 {% endif %}
 
             </ul>
 
 
-            <div class="dropdown float-right">
+            <div class="dropdown text-right">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     More
@@ -99,15 +99,15 @@
 
                 <div class="dropdown-menu bg-primary text-end m-1" aria-labelledby="dropdownMenu2">
                     <div class="dropdown-item bg-transparent">
-                        <a class="text-white {% if request.path == search_url %}active"  aria-current="page{%endif%}" 
+                        <a class="text-white {% if request.path == search_url %}active" aria-current="page{%endif%}"
                             href="{% url 'post_search' %}"> Search </a>
                     </div>
                     <div class="dropdown-item bg-transparent"><a
-                            class="text-white {% if request.path == about_url %}active"  aria-current="page{%endif%}" 
+                            class="text-white {% if request.path == about_url %}active" aria-current="page{%endif%}"
                             href="{% url 'about_page' %}">About</a>
                     </div>
                     <div class="dropdown-item bg-transparent"><a
-                            class="text-white {% if request.path == contact %}active"  aria-current="page{%endif%}"
+                            class="text-white {% if request.path == contact %}active" aria-current="page{%endif%}"
                             href="{% url 'contact' %}">Contact</a>
                     </div>
                 </div>
@@ -116,6 +116,7 @@
             </div>
 
         </div>
+
     </header>
 
     <!-- displaying Django confirmation messages -->
