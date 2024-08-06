@@ -528,6 +528,7 @@ replace app_name with the name of your primary Django app name; the folder where
 - [**Free Convert**](https://www.freeconvert.com/): To convert PNG, JPG, JPEG...images to Webp format.
 
 ## Testing
+For all testing and validation, please refer to the [TESTING.md](TESTING.md) file.
 
 # Cloning and Forking
 ## Cloning the Repository
