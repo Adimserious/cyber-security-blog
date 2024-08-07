@@ -143,11 +143,17 @@ Accessibility:
 
 ## Design Aesthetic
 - Color Scheme: A Professional and clean shades of blue, gray, black and white to convey trust and security.
+
+![Colors image](static/placeholder_images/colors-image.png)
+
 - Typography: There is a Clear and readable fonts, with a good contrast against the background.
+
 - Visual Elements: relevant and high-quality images is used to enhance content.
 
 ## Project planning
-![GitHub repository for issues and project planning ](https://github.com/users/Adimserious/projects/4)
+[GitHub repository for issues and project planning](https://github.com/users/Adimserious/projects/4)
+
+
 ![GitHub repository for issues and project planning image](static/placeholder_images/github-issues.png)
 
 ## Agile methodology project Management with Github 
@@ -438,7 +444,7 @@ Due to time constraints, the following features are remaining to implement
 - The update and delete functionality for create category poage.
 Hero Section:
 - The Featured Articles Slider Highlights to the latest or most important posts.
-
+- The bookmark user story.
 
 ## Technologies Used
 ### Frontend

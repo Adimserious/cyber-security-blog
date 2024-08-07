@@ -12,7 +12,6 @@ Return back to the [README.md](README.md) file.
       - [Python Validation](#python-validation)
       - [CSS Validation](#css-validation-1)
       - [Lighthouse Scores](#lighthouse-scores)
-      - [Wave Accessibility Evaluation](#wave-accessibility-evaluation)
   - [Manual Testing](#manual-testing)
     - [User Input/Form Validation](#user-inputform-validation)
     - [Browser Compatibility](#browser-compatibility)
@@ -187,14 +186,6 @@ Contact Module Python Validation Results
 ![screenshot](static/placeholder_images/signin-lh.png)
 **Sign up**
 ![screenshot](static/placeholder_images/signup-lh.png)
-
-
-#### Wave Accessibility Evaluation
-- **Tool Used:** [Wave Web Accessibility Evaluation Tool](https://wave.webaim.org/)
-- **Purpose:** To ensure that the website is accessible to individuals with disabilities by identifying and suggesting fixes for web accessibility issues.
-- **Process:** The Wave tool evaluates each page of Cybersecurity Mindset to ensure it complies with accessibility standards like WCAG and Section 508.
-
-![Wave Web Accessibility Evaluation Tool]
 
 
 ## Manual Testing
