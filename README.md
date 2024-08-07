@@ -272,7 +272,8 @@ Sign in page Wireframe
 
 A database schema is the blueprint or architecture of a database, defining how data is organized and how the relationships between data are managed. Here is an overview of the key database schema used in Cybersecurity Mindset
 
-- Entity Relationship Diagram (ERD)
+![Entity Relationship Diagram](static/placeholder_images/erd-image.png)
+
 An Entity-Relationship Diagram (ERD) is a visual representation of the data and its relationships within a database. It is a critical tool in database design and modeling, helping to clarify the structure and organization of data. Here is an ERD diagram representation of the Cybersecurity Mindset.
 
 ## Tables Overview ERD
@@ -295,7 +296,7 @@ user
 content 
 created
 
-Category: A model or table representing categories for blog posts including the field 'Name' only.
+Category: A model or table representing categories for blog posts including the field Name, author, category_id.
 
 About_page: A model or table for the about page content with the fields 
 title 

@@ -247,5 +247,6 @@ The background image wouldn't show in the deployed site and i was stucked findin
 
 ### Known Bugs
 The search function shows displays search results or not accordingly, however the links doesn't take user to the individual post, i couldn't go further to finding solutions to this due to limited time.
-### Unknown Bugs
 
+### Unknown Bugs
+I am not aware of any unknown bugs so far.

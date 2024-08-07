@@ -9,8 +9,8 @@ from .models import Blog_post, Category, Comment
 from .forms import CommentPost, CreatePost, PostSearchForm
 from . import forms
 
-# views.
 
+# Views.
 
 def like_view(request, slug, pk):
    # grap the post_id from the like button in read_more.html
@@ -99,7 +99,6 @@ def edit_comment(request, pk):
     """
     comment = get_object_or_404(Comment, pk=pk)
 
-
     if request.method == "POST":
 
         queryset = Comment.objects.filter(approved=True)
@@ -155,7 +154,7 @@ def edit_post(request, pk):
 def read_more(request, slug,):
     """
     Display a detailed post
-    
+   
     **Template:**
 
     :template:`blog/read_more.html`
@@ -239,7 +238,7 @@ def create_category(request):
             category_form.save()
             messages.add_message(request, messages.SUCCESS, "All done, New category added! awaiting approval.")
             return redirect('home')
- 
+
     else:
         category_form = forms.CreatCategory()
         # new instance of the create category form to render to the user
