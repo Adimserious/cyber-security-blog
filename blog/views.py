@@ -13,15 +13,17 @@ from . import forms
 # Views.
 
 def like_view(request, slug, pk):
-   # grap the post_id from the like button in read_more.html
-   post = get_object_or_404(Blog_post, id=request.POST.get('post_id'))
-   post.likes.add(request.user)
-   return render(
+    """
+    grap the post_id from the like button in read_more.html
+    """
+    post = get_object_or_404(Blog_post, id=request.POST.get('post_id'))
+    post.likes.add(request.user)
+    return render(
         request,
         "blog/read_more.html",
         # This is a context to pass data from my view to template.
         # The post object is used in the template as DTL variable
-        {"post": post,}
+        {"post": post, }
     )
 
 
@@ -38,12 +40,13 @@ def post_search(request):
             q = form.cleaned_data['q']
             results = Blog_post.objects.filter(title__contains=q)
 
-    return render(request, 'blog/search.html', {'form': form, 'q': q, 'results': results})
+    return render(request, 'blog/search.html',
+                  {'form': form, 'q': q, 'results': results})
 
 
 # This is the post list class view
 class AllPost(generic.ListView):
-  
+
     queryset = Blog_post.objects.filter(status=1)
     template_name = "blog/all_post.html"
     paginate_by = 6
@@ -67,7 +70,7 @@ class PostDeleteView(UserPassesTestMixin, generic.DeleteView):
             post = self.get_object()
             if self.request.user == post.author:
                 messages.add_message(self.request, messages.SUCCESS,
-                 'Post deleted!')
+                                     'Post deleted!')
                 return True
 
             return False
@@ -86,8 +89,8 @@ class CommentDeleteView(UserPassesTestMixin, generic.DeleteView):
             comment = self.get_object()
             if self.request.user == comment.author:
                 messages.add_message(self.request, messages.SUCCESS,
-                 'Comment deleted!')
-            return True   
+                                     'Comment deleted!')
+            return True
             return False
         return HttpResponseRedirect(reverse('home'))
 
@@ -132,7 +135,7 @@ def edit_post(request, pk):
         # Associating a post being created with the logged in user
         if form.is_valid() and post.author == request.user:
 
-            post =  form.save(commit=False)
+            post = form.save(commit=False)
             post.post = post
             post.approved = False
             post.save()
@@ -144,9 +147,10 @@ def edit_post(request, pk):
         elif request.user != post.author:
             return redirect('home')
 
-            messages.add_message(request, messages.ERROR, 'Error updating comment!')
+            messages.add_message(request, messages.ERROR,
+                                 'Error updating comment!')
 
-    else: 
+    else:
         form = CreatePost(instance=post)
         return render(request, 'blog/edit_post.html', {'form': form})
 
@@ -154,7 +158,7 @@ def edit_post(request, pk):
 def read_more(request, slug,):
     """
     Display a detailed post
-   
+
     **Template:**
 
     :template:`blog/read_more.html`
@@ -170,17 +174,16 @@ def read_more(request, slug,):
     like_count = post.likes.count()
 
     if request.method == "POST":
-         comment_post = CommentPost(data=request.POST)
-         if comment_post.is_valid():
+        comment_post = CommentPost(data=request.POST)
+        if comment_post.is_valid():
             comment = comment_post.save(commit=False)
             # Associating a comment being created with the logged in user
             comment.author = request.user
             comment.post = post
             comment.save()
-            messages.add_message(
-        request, messages.SUCCESS,
-        ' All done! Comment is submitted and is waiting approval'
-    )
+            messages.add_message(request, messages.SUCCESS,
+                                 'All done! Comment is submitted \
+                                 and is waiting approval')
     comment_post = CommentPost()
 
     return render(
@@ -189,19 +192,19 @@ def read_more(request, slug,):
         # This is a context to pass data from my view to template.
         # The post object is used in the template as DTL variable
         {"post": post,
-        "comments": comments,
-        "comment_no": comment_no,
-        "comment_post": comment_post,
-        "like_count": like_count},
+         "comments": comments,
+         "comment_no": comment_no,
+         "comment_post": comment_post,
+         "like_count": like_count},
 
     )
 
 
-@login_required(login_url="/accounts/login/")  
+@login_required(login_url="/accounts/login/")
 def create_post(request):
-    """ 
+    """
     Users create post
-    
+
     **Template:**
 
     :template:`blog/create_post.html`
@@ -209,16 +212,14 @@ def create_post(request):
     if request.method == 'POST':
         form = forms.CreatePost(data=request.POST,)
         if form.is_valid():
-            instance =  form.save(commit=False)
-            # Associating a post being created with the logged in user 
+            instance = form.save(commit=False)
+            # Associating a post being created with the logged in user
             instance.author = request.user
             instance.save()
-            messages.add_message(
-        request, messages.SUCCESS,
-        'All done! Post is submitted and is waiting approval'
-    )
+            messages.add_message(request, messages.SUCCESS,
+                                 'All done! Post is submitted \
+                                 and is waiting approval')
             return redirect('home')
-
 
     else:
         # new instance of the create post form to render to the user
@@ -233,13 +234,16 @@ def create_category(request):
     if request.method == "POST":
         category_form = forms.CreatCategory(data=request.POST)
         if category_form.is_valid():
-            category_form =  category_form.save(commit=False)
+            category_form = category_form.save(commit=False)
             category_form.author = request.user
             category_form.save()
-            messages.add_message(request, messages.SUCCESS, "All done, New category added! awaiting approval.")
+            messages.add_message(request, messages.SUCCESS,
+                                 "All done, New category added! \
+                                 awaiting approval.")
             return redirect('home')
 
     else:
         category_form = forms.CreatCategory()
         # new instance of the create category form to render to the user
-    return render(request, 'blog/create_category.html', {'category_form': category_form})
+    return render(request, 'blog/create_category.html',
+                  {'category_form': category_form})

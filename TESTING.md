@@ -10,10 +10,9 @@ Return back to the [README.md](README.md) file.
       - [HTML Validation](#html-validation)
       - [CSS Validation](#css-validation)
       - [Python Validation](#python-validation)
-      - [CSS Validation](#css-validation-1)
       - [Lighthouse Scores](#lighthouse-scores)
   - [Manual Testing](#manual-testing)
-    - [User Input/Form Validation and Django Messages Implementation Testing](#user-inputform-validation)
+    - [User Input/Form Validation and Django Messages Implementation Testing](#user-input/form-validation-and-django-messages-implementation-testing)
     - [User Story Testing](#user-story-testing)
     - [Other Testing](#Other-Testing)
   - [Automated Testing](#automated-testing)
@@ -80,8 +79,8 @@ I couldn't find where the trailing slash info is coming from.
 
 - Cybersecurity Project Module Python Validation Results**
 
-**settings.py**
-![screenshot]()
+**settings.py** i encountered new bugs after testing for the settings.py file and had to reverse to the previous code before testing.
+![screenshot](static/placeholder_images/settings.py-linter.png)
 
 **manage.py**
 ![screenshot](static/placeholder_images/manage.py-linter.png)
@@ -99,10 +98,10 @@ I couldn't find where the trailing slash info is coming from.
 Blog Module Python Validation Results
 
 **views.py**
-![screenshot]()
+![screenshot](static/placeholder_images/view.py-linter.png)
 
 **models.py**
-![screenshot]()
+![screenshot](static/placeholder_images/blog-model-linter.png)
 
 **forms.py**
 ![screenshot](static/placeholder_images/blog-form.py-linter.png)
@@ -196,6 +195,9 @@ Contact Module Python Validation Results
 | Create Post Form          | Yes     | Creates post   | Post is created and submitted for review | Pass      | ![screenshot](static/placeholder_images/create-post-confirm.png)     |
 | Contact Form  | Yes     | Submit form   | User receives confirmation message  | Pass      | ![screenshot](static/placeholder_images/contact-form-confirm.png)     |
 | Comment Form       | Yes     | Submit comment | Comment is added to the post and is awaiting approval | Pass      | ![screenshot](static/placeholder_images/comment-confirm.png)     |
+| Create category Form       | Yes     | Submit new category | Category is added to existing ones. | Pass      | ![screenshot](static/placeholder_images/create-cat-mssg.png)     |
+| Sign outpage       | Yes     | Sign user out | User is signed out successfully. | Pass      | ![screenshot](static/placeholder_images/sign-out-mssg.png)     |
+
 
 **User Input**
 
