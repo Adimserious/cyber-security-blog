@@ -264,7 +264,7 @@ Contact Module Python Validation Results
 
 
 ## Automated Testing
-![screenshot]()
+I am not able to complete automated testing in the Cybersecurity Mindset Blog.
 
 ### Running the Tests
 
