@@ -13,16 +13,13 @@ Return back to the [README.md](README.md) file.
       - [CSS Validation](#css-validation-1)
       - [Lighthouse Scores](#lighthouse-scores)
   - [Manual Testing](#manual-testing)
-    - [User Input/Form Validation](#user-inputform-validation)
-    - [Browser Compatibility](#browser-compatibility)
-    - [Django Messages Implementation Testing](#django-messages-implementation-testing)
+    - [User Input/Form Validation and Django Messages Implementation Testing](#user-inputform-validation)
     - [User Story Testing](#user-story-testing)
-    - [Responsiveness - Dev Tools/Real World Device Testing](#responsiveness---dev-toolsreal-world-device-testing)
+    - [Other Testing](#Other-Testing)
   - [Automated Testing](#automated-testing)
     - [Running the Tests](#running-the-tests)
     - [Test Database](#test-database)
     - [Importance of Testing](#importance-of-testing)
-    - [Continuous Integration](#continuous-integration)
   - [Bugs](#bugs)
     - [Solved Bugs](#solved-bugs)
     - [Known Bugs](#known-bugs)
@@ -190,16 +187,79 @@ Contact Module Python Validation Results
 
 ## Manual Testing
 
-### User Input/Form Validation
+### User Input/Form Validation and Django Messages Implementation Testing
+
+| Feature            | Tested? | Action        | Expected Outcome | Pass/Fail | Screenshots |
+|--------------------|---------|---------------|------------------|-----------|-------|
+| Sign up Form  | Yes     | Submit form   | User receives confirmation message and is redirected to the Home page as a login user. | Pass      | ![screenshot](static/placeholder_images/signup-confirmation.png)     |
+| Login Form         | Yes     | Submit credentials | User is logged in and redirected to the homepage just like the sign up. | Pass      | ![screenshot](static/placeholder_images/signup-confirmation.png)     |
+| Create Post Form          | Yes     | Creates post   | Post is created and submitted for review | Pass      | ![screenshot](static/placeholder_images/create-post-confirm.png)     |
+| Contact Form  | Yes     | Submit form   | User receives confirmation message  | Pass      | ![screenshot](static/placeholder_images/contact-form-confirm.png)     |
+| Comment Form       | Yes     | Submit comment | Comment is added to the post and is awaiting approval | Pass      | ![screenshot](static/placeholder_images/comment-confirm.png)     |
+
+**User Input**
+
+| Feature                               | Tested? | User Input Required           | User Feedback Provided                                                          | Pass/Fail | Notes on Fix (If Any) |
+|---------------------------------------|---------|------------------------------|--------------------------------------------------------------------------------|-----------|----------------------|
+| Navigation Links                      | Yes     | Click                        | Links redirect to corresponding pages. Hover effects indicate interactivity.    | Pass      | -                    |
+| Home Page Posts                     | Yes     | Click                        | Clicked on posts take users to read more of posts. | Pass      | -                    |
+| Sign Up Page                          | Yes     | Username/Password/Again Password/Email(optional)    | Validation prompts for incorrect input. Success message on account signup.    | Pass      |                   |
+| Login Page                            | Yes     | Username and Password  | Correct credentials required for login. Error message for failed login attempt. | Pass      | -                    |
+| Add Post and Submission                    | Yes     | Text/Image Upload            | Mandatory fields checked. Confirmation message upon successful submission.       | Pass      |                    |
+| Comment Submission                    | Yes     | Text Input                   | Users can submit comments. Awaiting approval message displayed.               | Pass      | -                    |
+| Like Interaction             | Yes     | Click                        | No Visual feedback on like however, Counts update accordingly.                    | Pass      | -                    |
+| Search Functionality                  | Yes     | Text Input                   | Relevant search results displayed. Message for no results found and suggestion for a new search seen.                 | Pass      | -                    |
+| Contact Us Form Submission            | Yes     | Text Input                   | Contact details of the user is submitted.       | Pass      | -                    |
+| Pagination Controls                   | Yes     | Click                        | Users can navigate through pages of posts.                                       | Pass      | -                    |
+| Post read more Interaction               | Yes     | Click on various elements    | Detailed view of post with comments and like options.                  | Pass      | -                    |                       | Pass      | -                    |
+| Form Error Handling                   | Yes     | Invalid Inputs               | Forms handle errors with descriptive messages guiding the user.                  | Pass      | -                    |
+| Logout Functionality                  | Yes     | Click                        | Users can log out successfully with a confirmation message.                      | Pass      | -                    |
+| Footer Social Media Icons             | Yes     | Click                        | Social media icons link to external pages in a new tab.                          | Pass      | -                    |
+| Responsive Design Elements            | Yes     | Resize/Change Orientation    | All elements resize and post appropriately for different screen sizes.          | Pass      | -                    |
+| Accessibility Features (e.g., ARIA)   | Yes     | Use of assistive technology  | ARIA labels and roles are present, ensuring accessibility compliance.            | Pass      | -                    |
 
 
-### Browser Compatibility
-
-### Django Messages Implementation Testing
 
 ### User Story Testing
 
-### Responsiveness - Dev Tools/Real World Device Testing
+| User Story ID | Title | Tested? | Response | Acceptance Criteria | Pass/Fail |
+|---------------|-------|---------|----------|---------------------|-----------|
+| #4 | view paginated post lists | Yes | No issues | User can browse the site without the need to log in | Pass |
+| #5 | Open a Blog Post | Yes | No issues | Users can open and read posts | Pass |
+| #6 | View comments | Yes | No issues | Comments are visible under posts | Pass |
+| #7 | comment on a post | Yes | No issues | Users can comment on posts | Pass |
+| #8 | Account Registration | Yes | No issues | Users can register for an account | Pass |
+| #9 | Modify or delete comment on a post | Yes | No issues | Users can Modify and delete comment on a post | Pass |
+| #10 | Manage posts | Yes | No issues | Logged in Users can Manage blog posts (create, edit, delete) | Pass |
+| #11 | Create drafts | Yes | No issues | Users can create drafts posts | Pass |
+| #12 | Data validation | Yes | No issues | Users can only use valid inputs | Pass |
+| #13 | User-Login | Yes | No issues | registered user can is able to login. | Pass |
+| #14 | Like post | Yes | No issues | Users can like blog posts | Pass |
+| #15 | Edit blog post | Yes | No issues | Users can edit their posts | Pass |
+| #16 | Delete Blog Post | Yes | No issues | Authors can delete their blog posts | Pass |
+| #17 | Category | Yes | No issues | Users can choose to categorise their posts | Pass |
+| #18 | About | Yes | No issues | Users can view the about page | Pass |
+| #19 | Contact | Yes | No issues | Users can submit contact forms | Pass |
+| #20 | Create-Post | Yes | No issues | Users can create and publish blog posts | Pass |
+
+
+### Other Testing
+
+| NO | Title | Tested? | Response | Acceptance Criteria | Pass/Fail |
+|---------------|-------|---------|----------|---------------------|-----------|
+| 1 | Facilitate Removal of Outdated or Incorrect Posts | Yes | No issues | Users can delete outdated or incorrect posts | Pass |
+| 2 | Navigate easily | Yes | No issues | Users can navigate the site easily using navigation links | Pass |
+| 3 | 'Sign up' and 'Log in' buttons disappear after 'Login' | Yes | No issues | After logging in, sign up and login buttons are not replaced to user | Pass |
+| 4 | Create new apps  | Yes | No issues | Developers can create new applications within the project | Pass |
+| 5 | Cyber Security Mindset Blog | Yes | No issues | Users can access and interact with blog posts | Pass |
+| 6 | Deploying the Django Project on Heroku | Yes | No issues | The project is successfully deployed on Heroku | Pass |
+| 7 | Creating the Database in ProsgresSQL | Yes | No issues | The database is successfully created and managed using ProsgresSQL | Pass |
+| 8 | Add and update the about text | Yes | No issues | Admins can add and update the about page content | Pass |
+| 9 | Implement Comprehensive Testing | Yes | No issues | Comprehensive testing is carried out across the application | Pass |
+| 10 | Contact Form Submission Feature(Site Owner) | Yes | No issues | Site owner can receive and respond to contact submissions | Pass |
+| 11 | Enhance Data Validation | Yes | No issues | Data validation mechanisms are in place and functional | Pass |
+
+
 
 ## Automated Testing
 ![screenshot]()

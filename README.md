@@ -445,7 +445,7 @@ Due to time constraints, the following features are remaining to implement
 Hero Section:
 - The Featured Articles Slider Highlights to the latest or most important posts.
 - The bookmark user story.
-
+- Adding summernote for users.
 ## Technologies Used
 ### Frontend
 - [**HTML5**](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5): Used for the web Structures.
