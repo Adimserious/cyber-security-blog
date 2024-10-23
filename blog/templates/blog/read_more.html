@@ -11,7 +11,8 @@
             <p class="text-muted">By {{ post.author }}</p>
             <div class="mb-4">
                 {% if "placeholder" in post.image.url %}
-                <img src="{% static 'placeholder_images/placeholder.jpg' %}" class="img-fluid rounded" alt="Placeholder image">
+                <img src="{% static 'placeholder_images/placeholder.jpg' %}" class="img-fluid rounded"
+                    alt="Placeholder image">
                 {% else %}
                 <img src="{{ post.image.url }}" class="img-fluid rounded" alt="Post image">
                 {% endif %}
@@ -40,18 +41,19 @@
 
         <!-- Like Post Section -->
         <div class="col-md-4 mb-4">
-            <form action="{% url 'like_post' slug=post.slug pk=post.id %}" method="POST" class="d-flex align-items-center">
+            <form action="{% url 'like_post' slug=post.slug pk=post.id %}" method="POST"
+                class="d-flex align-items-center">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-primary">
                     {% if user in post.likes.all %}
-                        Unlike
+                    Unlike
                     {% else %}
-                        Like
+                    Like
                     {% endif %}
                 </button>
                 <span class="ms-3">{{ post.likes.count }} Likes</span>
             </form>
-            
+
             <a href="{% url 'home' %}" class="btn btn-secondary mt-4">Back</a>
         </div>
     </div>
@@ -60,7 +62,8 @@
     {% if from_search %}
     <div class="row mb-3">
         <div class="col-md-8">
-            <a href="{% url 'post_search' %}?q={{ q|urlencode }}" class="btn btn-secondary mt-4">Back to Search Results</a>
+            <a href="{% url 'post_search' %}?q={{ q|urlencode }}" class="btn btn-secondary mt-4">Back to Search
+                Results</a>
         </div>
     </div>
     {% endif %}
@@ -68,15 +71,18 @@
     <!-- Comments Section -->
     <div class="row">
         <div class="col-md-8">
-            <h3>Comments</h3>
+            <h3>Comments ({{ comment_count }})</h3>
+            <hr>
             <hr>
             {% if not post.comments.all %}
             <p>No Comments yet...</p>
             {% else %}
             {% for comment in comments %}
-            <div class="card mb-3 {% if not comment.approved and comment.author == user %}text-secondary{% elif not comment.approved %}d-none{% endif %}">
+            <div
+                class="card mb-3 {% if not comment.approved and comment.author == user %}text-secondary{% elif not comment.approved %}d-none{% endif %}">
                 <div class="card-body">
-                    <h5 class="card-title">{{ comment.author }} <small class="text-muted">{{ comment.created }}</small></h5>
+                    <h5 class="card-title">{{ comment.author }} <small class="text-muted">{{ comment.created }}</small>
+                    </h5>
                     <p class="card-text">{{ comment.content|linebreaks }}</p>
                     {% if not comment.approved and comment.author == user %}
                     <p class="text-warning">Hold on! Your comment is awaiting approval.</p>
@@ -99,7 +105,7 @@
                     {% if user.is_authenticated %}
                     <h4>Leave a comment</h4>
                     <form id="comment_form" method="post">
-                        {{ comment_post|crispy }}
+                        {{ comment_form|crispy }}
                         {% csrf_token %}
                         <p>Commenting as: <strong>{{ user.username }}</strong></p>
                         <button type="submit" class="btn btn-primary">Submit</button>

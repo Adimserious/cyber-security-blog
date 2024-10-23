@@ -153,6 +153,7 @@ def read_more(request, slug):
     post = get_object_or_404(Blog_post, slug=slug, status=1)
     comments = post.comments.filter(approved=True).order_by("-created")
     like_count = post.likes.count()
+    comment_count = comments.count()
     user_liked = request.user in post.likes.all() if request.user.is_authenticated else False
 
     # Check if user its coming from search results
@@ -176,6 +177,7 @@ def read_more(request, slug):
         "like_count": like_count,
         "comment_form": comment_form,
         "user_liked": user_liked,
+        "comment_count": comment_count,
         "q": q,
         "from_search": from_search,
     })
