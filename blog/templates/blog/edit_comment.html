@@ -4,7 +4,7 @@
 
 {% load crispy_forms_tags %}
 
-<div class="container mt-5 text-white text-end m-3">
+<div class="container mt-5 text-end m-3">
     <div class="row justify-content-center">
         <div class="col-12 col-md-6 my-5">
             <h2>Update a comment</h2>
@@ -13,11 +13,10 @@
                 {% csrf_token %}
                 <p>Editing as: {{ user.username }}</p>
                 <button class="btn btn-primary" type="submit">Update</button>
+                <a class="btn btn-secondary" href="{% url 'read_more'  comment.post.slug %}">Cancel</a>
             </form>
         </div>
     </div>
 </div>
-
-
 
 {% endblock %}

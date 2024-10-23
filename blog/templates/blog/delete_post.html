@@ -2,9 +2,7 @@
 
 {% block content %}
 
-
-
-<div class="container mt-5 text-white text-end m-3">
+<div class="container mt-5 text-dark text-end m-3">
     <div class="row justify-content-center">
         <div class="col-12 col-md-6 my-5">
             <form method="POST">
@@ -15,13 +13,11 @@
                 </fieldset>
                 <div>
                     <button class="btn btn-danger" type="submit">Yes, Delete</button>
-                    <a class="btn btn-secondary" href="{% url 'home' %}">Cancel</a>
+                    <a class="btn btn-secondary" href="{% url 'read_more' post.slug %}">Cancel</a>
                 </div>
             </form>
         </div>
     </div>
 </div>
-
-
 
 {% endblock %}

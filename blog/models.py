@@ -2,12 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from cloudinary.models import CloudinaryField
-
+from django.urls import reverse
 
 class Category(models.Model):
     """
-    Category model stores category for various blog post related to model:
-
+    Category model stores category for various blog posts.
     """
     name = models.CharField(max_length=200)
 
@@ -18,14 +17,11 @@ class Category(models.Model):
 STATUS_CHOICES = ((0, 'pending'), (1, "done"))
 
 
-# Create your models here.
 class Blog_post(models.Model):
     """
-    This model stores individual blog post related to model: auth.User
+    This model stores individual blog posts.
     """
-    author = models.ForeignKey(User,
-                               on_delete=models.CASCADE,
-                               related_name="blog_post")
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="blog_post")
     image = CloudinaryField("image", default='placeholder')
     title = models.CharField(max_length=250, unique=True)
     slug = models.SlugField(max_length=250, unique=True)
@@ -35,11 +31,8 @@ class Blog_post(models.Model):
     published = models.DateTimeField(default=timezone.now)
     updated = models.DateTimeField(auto_now=True)
     status = models.IntegerField(choices=STATUS_CHOICES, default=0)
-    category = models.ForeignKey(Category, on_delete=models.PROTECT,
-                                 related_name="blog_post", default=1)
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name="blog_post", default=1)
     likes = models.ManyToManyField(User, related_name="post_likes")
-    # Meta data class with ordering attribute
-    # to sort result by the published field
 
     class Meta:
         ordering = ["-published"]
@@ -47,19 +40,25 @@ class Blog_post(models.Model):
     def total_likes(self):
         return self.likes.count()
 
+    def get_absolute_url(self):
+        # Returns the URL to access a particular blog post instance
+        return reverse('read_more', kwargs={'slug': self.slug})
+
     def __str__(self):
         return f"The title of this post is {self.title} | by {self.author}"
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)  # Generate a slug from the title
+        super().save(*args, **kwargs)
 
 
 class Comment(models.Model):
     """
-    This model stores comments on individual blog post
-    related to model: auth.User and model: blog.Blog_post
+    This model stores comments on individual blog posts.
     """
-    author = models.ForeignKey(User, on_delete=models.CASCADE,
-                               related_name="commenters")
-    post = models.ForeignKey(Blog_post, on_delete=models.CASCADE,
-                             related_name="comments")
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="commenters")
+    post = models.ForeignKey(Blog_post, on_delete=models.CASCADE, related_name="comments")
     content = models.TextField()
     created = models.DateField(auto_now_add=True)
     approved = models.BooleanField(default=False)

@@ -3,132 +3,115 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
-<!-- Displaying title, author and image -->
-<div>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <!-- Post title -->
-                <h1 class="text-white bg-primary">{{ post.title }}</h1>
-                <!-- Post author -->
-                <p class="text-white">By {{ post.author }}</p>
+<div class="container mt-4">
+    <!-- Display Post Title, Author, and Image -->
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-primary">{{ post.title }}</h1>
+            <p class="text-muted">By {{ post.author }}</p>
+            <div class="mb-4">
                 {% if "placeholder" in post.image.url %}
-                <div><img src="{% static 'placeholder_images/placeholder.jpg' %}" class="img-fluid" alt="placeholder image"></div>
+                <img src="{% static 'placeholder_images/placeholder.jpg' %}" class="img-fluid rounded" alt="Placeholder image">
                 {% else %}
-                <div><img src="{{ post.image.url }}" class="img-fluid" alt="image"></div>
+                <img src="{{ post.image.url }}" class="img-fluid rounded" alt="Post image">
                 {% endif %}
-                
-            </div>
-            
-        </div>
-    </div>
-</div>
-
-<!-- Displaying Blog Posts -->
-<div class="container">
-    <div class="row">
-        <div class="col card mb-4  mt-3 left  top">
-            <div class="card-body">
-                <!-- The post body content and date created goes inside the card-text. -->
-                <!-- The pipe symbol | safe filter inside the template tags is necessary to tell Django that its safe -->
-                <h6>
-                    {{ post.body_content | safe }}
-                    {{ post.created }}
-                </h6>
-                <p>{% if user.is_authenticated and post.author == user %}
-                    <a class="btn btn-primary" href="{% url 'edit_post' post.pk %}">Edit Post</a>{% endif %}
-                </p>
-                <p>{% if user.is_authenticated and post.author == user %}
-                    <a class="btn btn-danger" href="{% url 'delete_post' post.pk %}">Delete Post</a>
-                    {% endif %}
-                </p>
-                <br>
-                
-                <form action="{% url 'like_post' slug=post.slug pk=post.id %}" method="POST">
-                    {% csrf_token%}
-                    <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-primary btn-sm">Like</button> - {{ like_count }}Likes
-                </form>
-                <br>
-                <hr>
-                <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
             </div>
         </div>
     </div>
 
-
-
-
-   <!-- Display number of comments -->
-    <div class="row text-white">
-        <div class="col-12">
-            <strong class="text-white">
-                <i class="far fa-comments text-white"></i> {{ comment_no }} 
-            </strong>
-        </div>
-        <div class="col-12">
-            <hr>
-        </div>
-    </div>
-    <!-- Display Comments or no comments -->
+    <!-- Post Content -->
     <div class="row">
-        <div class="col-md-8 card mb-4  mt-3 bg-transparent text-white">
-            <h3>Comments:</h3>
-            <div>{% if not post.comments.all %}
-                No Comments yet..{% endif %}</div>
-            <div class="card-body">
-
-                {% for comment in comments %}
-                <div class="{% if not comment.approved and comment.author == user %}
-                text-secondary{% elif not comment.approved %}d-none{% endif %}">
-                    <p class="font-weight-bold">
-                        {{ comment.author }}
-                        <span class="font-weight-normal">
-                            {{ comment.created }}
-                        </span> wrote:
-                    </p>
-                    <div id="comment{{ comment.id }}">
-                        {{ comment.content | linebreaks }}
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="post-content">
+                        <p class="card-text">{{ post.body_content|safe }}</p>
+                        <small class="text-muted">Published on: {{ post.created }}</small>
                     </div>
-                    {% if not comment.approved and comment.author == user %}
-                    <p class="text-warning">
-                        Hold on! your comment is awaiting approval
-                    </p>
-                    {% endif %}
-                    
-                    <!-- Editing comments -->
-                    {% if user.is_authenticated and comment.author == user %}
-                    <a class="btn btn-primary" href="{% url 'edit_comment' comment.pk %}">Edit Comment</a>
-                    {% endif %}
-                    <!-- Deleting comments -->
-                    {% if user.is_authenticated and comment.author == user %}
-                    <a class="btn btn-danger" href="{% url 'delete_comment' comment.pk %}">Delete Comment</a>
+                    <hr>
+                    <!-- Edit/Delete buttons for the post owner -->
+                    {% if user.is_authenticated and post.author == user %}
+                    <a href="{% url 'edit_post' post.pk %}" class="btn btn-primary me-2">Edit Post</a>
+                    <a href="{% url 'delete_post' post.pk %}" class="btn btn-danger">Delete Post</a>
                     {% endif %}
                 </div>
-                <!-- for loop ends here -->
-                {% endfor %}
             </div>
         </div>
 
-        <!--Submiting New Comments -->
-        <div class="col-md-4 card mb-4 mt-3">
-            <div class="card-body">
-                {% if user.is_authenticated %}
-                <h2>Leave a comment:</h2>
-                <form id="comment_form" method="post">
-                    {{ comment_post | crispy }}
-                    {% csrf_token %}
-                    <p>Commenting as: {{ user.username }}</p>
-                    <button type="submit" class="btn btn-primary" id="submit_btn">Submit</button>
-                </form>
-                {% else %}
-                <p>Log in to leave a comment</p>
-                {% endif %}
+        <!-- Like Post Section -->
+        <div class="col-md-4 mb-4">
+            <form action="{% url 'like_post' slug=post.slug pk=post.id %}" method="POST" class="d-flex align-items-center">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary">
+                    {% if user in post.likes.all %}
+                        Unlike
+                    {% else %}
+                        Like
+                    {% endif %}
+                </button>
+                <span class="ms-3">{{ post.likes.count }} Likes</span>
+            </form>
+            
+            <a href="{% url 'home' %}" class="btn btn-secondary mt-4">Back</a>
+        </div>
+    </div>
+
+    <!-- Back to Search Results Button -->
+    {% if from_search %}
+    <div class="row mb-3">
+        <div class="col-md-8">
+            <a href="{% url 'post_search' %}?q={{ q|urlencode }}" class="btn btn-secondary mt-4">Back to Search Results</a>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Comments Section -->
+    <div class="row">
+        <div class="col-md-8">
+            <h3>Comments</h3>
+            <hr>
+            {% if not post.comments.all %}
+            <p>No Comments yet...</p>
+            {% else %}
+            {% for comment in comments %}
+            <div class="card mb-3 {% if not comment.approved and comment.author == user %}text-secondary{% elif not comment.approved %}d-none{% endif %}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ comment.author }} <small class="text-muted">{{ comment.created }}</small></h5>
+                    <p class="card-text">{{ comment.content|linebreaks }}</p>
+                    {% if not comment.approved and comment.author == user %}
+                    <p class="text-warning">Hold on! Your comment is awaiting approval.</p>
+                    {% endif %}
+                    <!-- Edit/Delete Comment -->
+                    {% if user.is_authenticated and comment.author == user %}
+                    <a href="{% url 'edit_comment' comment.pk %}" class="btn btn-primary me-2">Edit</a>
+                    <a href="{% url 'delete_comment' comment.pk %}" class="btn btn-danger">Delete</a>
+                    {% endif %}
+                </div>
             </div>
+            {% endfor %}
+            {% endif %}
         </div>
 
+        <!-- Leave a Comment -->
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    {% if user.is_authenticated %}
+                    <h4>Leave a comment</h4>
+                    <form id="comment_form" method="post">
+                        {{ comment_post|crispy }}
+                        {% csrf_token %}
+                        <p>Commenting as: <strong>{{ user.username }}</strong></p>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                    {% else %}
+                    <p>Please <a href="{% url 'account_login' %}">log in</a> to leave a comment.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-
 
 {% endblock content %}
 

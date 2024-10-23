@@ -8,10 +8,10 @@
 <div class="container mt-5 text-end m-3">
     <div class="row justify-content-center">
         <div class="col-12 col-md-6 my-5">
-            <div class="create_category text-white text-end m-3">
+            <div class="create_category text-end m-3">
                 <h2>Create a new Cybersecurity Category </h2>
                 <form class="category_form" action="{% url 'create_category' %}" method="POST">
-                    {{ category_form | crispy }}
+                    {{ form | crispy }}
                     {% csrf_token %}
                     <button class="btn btn-primary" type="submit">Create Category</button>
                     <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>

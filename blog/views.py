@@ -3,247 +3,218 @@ from django.views import generic
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from django.db.models import Count
+from django.db.models import Q
 from django.contrib.auth.mixins import UserPassesTestMixin
 from .models import Blog_post, Category, Comment
-from .forms import CommentPost, CreatePost, PostSearchForm
 from . import forms
+from .forms import CommentPost, CreatePost, PostSearchForm, CreateCategory
+from django.urls import reverse_lazy
 
 
-# Views.
-
+@login_required
 def like_view(request, slug, pk):
     """
-    grap the post_id from the like button in read_more.html
+    Handle liking and unliking a post based on the slug and primary key.
     """
-    post = get_object_or_404(Blog_post, id=request.POST.get('post_id'))
-    post.likes.add(request.user)
-    return render(
-        request,
-        "blog/read_more.html",
-        # This is a context to pass data from my view to template.
-        # The post object is used in the template as DTL variable
-        {"post": post, }
-    )
+    post = get_object_or_404(Blog_post, pk=pk)
+
+    if post.likes.filter(pk=request.user.pk).exists():
+        post.likes.remove(request.user)
+    else:
+        post.likes.add(request.user)
+
+    return redirect(post.get_absolute_url())
 
 
 def post_search(request):
     """
-    Search view
+    Search view for blog posts
     """
-    form = PostSearchForm()
+    form = PostSearchForm(request.GET or None)
     q = ''
     results = []
-    if 'q' in request.GET:
-        form = PostSearchForm(request.GET)
-        if form.is_valid():
-            q = form.cleaned_data['q']
-            results = Blog_post.objects.filter(title__contains=q)
 
-    return render(request, 'blog/search.html',
-                  {'form': form, 'q': q, 'results': results})
+    if form.is_valid():
+        q = form.cleaned_data['q']
+        results = Blog_post.objects.filter(
+            Q(title__icontains=q) | Q(body_content__icontains=q)  # Search in title and content
+        )
+
+    return render(request, 'blog/search.html', {
+        'form': form,
+        'q': q,
+        'results': results
+    })
 
 
-# This is the post list class view
 class AllPost(generic.ListView):
-
-    queryset = Blog_post.objects.filter(status=1)
+    """
+    Display all published posts with pagination.
+    """
+    queryset = Blog_post.objects.filter(status=1).order_by('-created')
     template_name = "blog/all_post.html"
     paginate_by = 6
 
 
-# This is the Category class view
 class Category(generic.ListView):
-    queryset = Blog_post.objects.filter(author=1)
-    template_name = "blog/all_post.html"
+    """
+    Display posts by category.
+    """
+    template_name = "blog/create_category.html"
     paginate_by = 3
 
-
-# This is the delete post class view
-class PostDeleteView(UserPassesTestMixin, generic.DeleteView):
-    queryset = Blog_post.objects.filter(author=1)
-    template_name = "blog/delete_post.html"
-    success_url = '/'
-
-    def test_func(self):
-        if self.request.method == "POST":
-            post = self.get_object()
-            if self.request.user == post.author:
-                messages.add_message(self.request, messages.SUCCESS,
-                                     'Post deleted!')
-                return True
-
-            return False
-
-        return HttpResponseRedirect(reverse('home'))
+    def get_queryset(self):
+        category_slug = self.kwargs.get('slug')
+        return Blog_post.objects.filter(
+            category__slug=category_slug, status=1
+        ).order_by('-created')
 
 
-# This is the delete comments class view
-class CommentDeleteView(UserPassesTestMixin, generic.DeleteView):
-    queryset = Comment.objects.filter(author=1)
-    template_name = "blog/delete_comment.html"
-    success_url = '/'
+@login_required
+def delete_post(request, pk):
+    post = get_object_or_404(Blog_post, pk=pk)
 
-    def test_func(self):
-        if self.request.method == "POST":
-            comment = self.get_object()
-            if self.request.user == comment.author:
-                messages.add_message(self.request, messages.SUCCESS,
-                                     'Comment deleted!')
-            return True
-            return False
-        return HttpResponseRedirect(reverse('home'))
+    if request.user != post.author:
+        messages.error(request, "You don't have permission to delete this post.")
+        return redirect('home')
+
+    if request.method == "POST":
+        post.delete()
+        messages.success(request, 'Post deleted successfully!')
+        return redirect('home')
+
+    return render(request, 'blog/delete_post.html', {'post': post})
+
+
+@login_required
+def delete_comment(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+
+    if request.user != comment.author:
+        messages.error(request, "You don't have permission to delete this comment.")
+        return redirect('home')
+
+    if request.method == "POST":
+        post_slug = comment.post.slug  # Get the slug of the related post
+        comment.delete()
+        messages.success(request, 'Comment deleted successfully!')
+        return redirect('read_more', slug=post_slug)  # Redirect back to the post
+
+    return render(request, 'blog/delete_comment.html', {'comment': comment})
 
 
 @login_required
 def edit_comment(request, pk):
-    """
-    Edit comments view
-    """
     comment = get_object_or_404(Comment, pk=pk)
 
+    if request.user != comment.author:
+        messages.error(request, "You don't have permission to edit this comment.")
+        return redirect('home')
+
     if request.method == "POST":
-
-        queryset = Comment.objects.filter(approved=True)
-        form = CommentPost(data=request.POST, instance=comment)
-
-        if form.is_valid() and comment.author == request.user:
-            comment = form.save(commit=False)
-            comment.comment = comment
-            comment.approved = False
-            comment.save()
-            messages.add_message(request, messages.SUCCESS, 'Comment Updated!')
-            return redirect('home')
-
-        elif request.user != comment.author:
-            return redirect('read_more')
-
+        form = CommentPost(request.POST, instance=comment)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Comment updated successfully!')
+            return redirect('read_more', slug=comment.post.slug)  # Redirect to the post after saving
     else:
         form = CommentPost(instance=comment)
-        return render(request, 'blog/edit_comment.html', {'form': form})
+
+    return render(request, 'blog/edit_comment.html', {'form': form, 'comment': comment})
 
 
+@login_required
 def edit_post(request, pk):
     """
-    Edit post view
+    Edit a blog post.
     """
     post = get_object_or_404(Blog_post, pk=pk)
 
+    if request.user != post.author:
+        messages.error(request, "You don't have permission to edit this post.")
+        return redirect('home')
+
     if request.method == "POST":
-
         form = CreatePost(request.POST, request.FILES, instance=post)
-        # Associating a post being created with the logged in user
-        if form.is_valid() and post.author == request.user:
-
-            post = form.save(commit=False)
-            post.post = post
-            post.approved = False
-            post.save()
-            messages.add_message(
-                request, messages.SUCCESS,
-                'All done! Post is Updated')
-            return redirect('home')
-
-        elif request.user != post.author:
-            return redirect('home')
-
-            messages.add_message(request, messages.ERROR,
-                                 'Error updating comment!')
-
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Post Updated Successfully!')
+            return redirect(post.get_absolute_url())  # Redirect to the post's detail page after updating
     else:
         form = CreatePost(instance=post)
-        return render(request, 'blog/edit_post.html', {'form': form})
+
+    return render(request, 'blog/edit_post.html', {'form': form, 'post': post})
 
 
-def read_more(request, slug,):
+def read_more(request, slug):
     """
-    Display a detailed post
-
-    **Template:**
-
-    :template:`blog/read_more.html`
+    Display a detailed post view with comments and likes.
     """
-    # queryset to filter posts that are done or publiched
-    queryset = Blog_post.objects.filter(status=1)
-    # this is A helper function. the slug value is unique for each post
-    post = get_object_or_404(queryset, slug=slug)
-    comments = post.comments.all().order_by("-created")
-    comment_no = post.comments.filter(approved=True).count()
-
-    likes = post.likes.all()
+    post = get_object_or_404(Blog_post, slug=slug, status=1)
+    comments = post.comments.filter(approved=True).order_by("-created")
     like_count = post.likes.count()
+    user_liked = request.user in post.likes.all() if request.user.is_authenticated else False
+
+    # Check if user its coming from search results
+    q = request.GET.get('q')  # Get the search query from the GET parameters
+    from_search = request.GET.get('from_search')
 
     if request.method == "POST":
-        comment_post = CommentPost(data=request.POST)
-        if comment_post.is_valid():
-            comment = comment_post.save(commit=False)
-            # Associating a comment being created with the logged in user
+        comment_form = CommentPost(data=request.POST)
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
             comment.author = request.user
             comment.post = post
             comment.save()
-            messages.add_message(request, messages.SUCCESS,
-                                 'All done! Comment is submitted \
-                                 and is waiting approval')
-    comment_post = CommentPost()
+            messages.success(request, 'Comment Submitted for Approval')
+    else:
+        comment_form = CommentPost()
 
-    return render(
-        request,
-        "blog/read_more.html",
-        # This is a context to pass data from my view to template.
-        # The post object is used in the template as DTL variable
-        {"post": post,
-         "comments": comments,
-         "comment_no": comment_no,
-         "comment_post": comment_post,
-         "like_count": like_count},
+    return render(request, 'blog/read_more.html', {
+        "post": post,
+        "comments": comments,
+        "like_count": like_count,
+        "comment_form": comment_form,
+        "user_liked": user_liked,
+        "q": q,
+        "from_search": from_search,
+    })
 
-    )
 
 
 @login_required(login_url="/accounts/login/")
 def create_post(request):
     """
-    Users create post
-
-    **Template:**
-
-    :template:`blog/create_post.html`
+    View to create a blog post.
     """
     if request.method == 'POST':
-        form = forms.CreatePost(data=request.POST,)
+        form = CreatePost(request.POST, request.FILES)
         if form.is_valid():
-            instance = form.save(commit=False)
-            # Associating a post being created with the logged in user
-            instance.author = request.user
-            instance.save()
-            messages.add_message(request, messages.SUCCESS,
-                                 'All done! Post is submitted \
-                                 and is waiting approval')
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            messages.success(request, 'Post Created Successfully! Waiting for approval.')
             return redirect('home')
-
     else:
-        # new instance of the create post form to render to the user
-        form = forms.CreatePost()
+        form = CreatePost()
+
     return render(request, 'blog/create_post.html', {'form': form})
 
 
+@login_required
 def create_category(request):
     """
-    Renders the Category page
+    View to create a category.
     """
     if request.method == "POST":
-        category_form = forms.CreatCategory(data=request.POST)
-        if category_form.is_valid():
-            category_form = category_form.save(commit=False)
-            category_form.author = request.user
-            category_form.save()
-            messages.add_message(request, messages.SUCCESS,
-                                 "All done, New category added! \
-                                 awaiting approval.")
+        form = forms.CreateCategory(request.POST)
+        if form.is_valid():
+            category = form.save(commit=False)
+            category.author = request.user
+            category.save()
+            messages.success(request, "Category Created Successfully!")
             return redirect('home')
-
     else:
-        category_form = forms.CreatCategory()
-        # new instance of the create category form to render to the user
-    return render(request, 'blog/create_category.html',
-                  {'category_form': category_form})
+        form = forms.CreateCategory()
+
+    return render(request, 'blog/create_category.html', {'form': form})

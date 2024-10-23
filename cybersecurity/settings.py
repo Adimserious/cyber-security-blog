@@ -32,9 +32,9 @@ SECRET_KEY = 'django-insecure--s47!&4!$($s8p_)70a&=ym78-j%th89ps0zf5-z5)t1z0%v$6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['8000-adimserious-cybersecuri-np420juw4ry.ws.codeinstitute-ide.net', '.herokuapp.com']
+ALLOWED_HOSTS = ['8000-adimserious-cybersecuri-5lmpbyky5vj.ws.codeinstitute-ide.net', '.herokuapp.com']
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-adimserious-cybersecuri-np420juw4ry.ws.codeinstitute-ide.net', '.https://*.herokuapp.com']
+CSRF_TRUSTED_ORIGINS = ['https://8000-adimserious-cybersecuri-5lmpbyky5vj.ws.codeinstitute-ide.net', '.https://*.herokuapp.com']
 
 # Application definition
 
@@ -139,6 +139,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = 'True'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/

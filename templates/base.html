@@ -37,137 +37,94 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
-
-    <link rel="stylesheet"
-        href="https://res.cloudinary.com/diljenpjx/image/upload/v1722456110/cyber-7930967_1280_1_af8uqc.jpg">
 </head>
 
 <body>
     <header>
-        <div class="bg-primary text-end m-3">
-            <a href="{% url 'home' %}">
-                <h1 class="text-end m-3 text-white logo">Cybersecurity Mindset</h1>
+        <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+            <a class="navbar-brand text-white" href="{% url 'home' %}">
+                Cybersecurity Mindset
             </a>
-            <div>
-                {% if user.is_authenticated %}
-                <p class="text-end m-3 text-white text-right">You are logged in as {{ user }}</p>
-                {% else %}
-                <p class="text-end m-3 text-white text-right">Log in to create a post and leave a comment</p>
-                {% endif %}
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item {% if request.path == home_url %}active{% endif %}">
+                        <a class="nav-link text-white" href="{% url 'home' %}">Home</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item {% if request.path == create_url %}active{% endif %}">
+                        <a class="nav-link text-white" href="{% url 'create' %}">Create post</a>
+                    </li>
+                    <li class="nav-item {% if request.path == create_category_url %}active{% endif %}">
+                        <a class="nav-link text-white" href="{% url 'create_category' %}">Create category</a>
+                    </li>
+                    <li class="nav-item {% if request.path == logout_url %}active{% endif %}">
+                        <a class="nav-link text-white" href="{% url 'account_logout' %}">Log out</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item {% if request.path == signup_url %}active{% endif %}">
+                        <a class="nav-link text-white" href="{% url 'account_signup' %}">Sign up</a>
+                    </li>
+                    <li class="nav-item {% if request.path == login_url %}active{% endif %}">
+                        <a class="nav-link text-white" href="{% url 'account_login' %}">Login</a>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item {% if request.path == about_url %}active{% endif %}">
+                        <a class="nav-link text-white" href="{% url 'about_page' %}">About</a>
+                    </li>
+                    <li class="nav-item {% if request.path == contact_url %}active{% endif %}">
+                        <a class="nav-link text-white" href="{% url 'contact' %}">Contact</a>
+                    </li>
+                    <li class="nav-item {% if request.path == post_search_url %}active{% endif %}">
+                        <a class="nav-link text-white" href="{% url 'post_search' %}">Search</a>
+                    </li>
+                </ul>
             </div>
-
-            <ul class="nav nav-pills nav-fill">
-                <li class="">
-                    <a class="nav-link text-white {% if request.path == home_url %}active"
-                        aria-current="page{% endif %}" href="{% url 'home' %}">Home</a>
-                </li>
-
-                {% if user.is_authenticated %}
-                <li class="nav-item nav-fill">
-                    <a class="nav-link text-white {% if request.path == create_url %}active"
-                        aria-current="page{%endif%}" href="{% url 'create' %}">Create post</a>
-                </li>
-
-                <li class="nav-item nav-fill">
-                    <a class="nav-link text-white {% if request.path == create_category_url %}active"
-                        aria-current="page{%endif%}" href="{% url 'create_category' %}">Create category </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link text-white {% if request.path == account_logout_url %}active"
-                        aria-current="page{%endif%}" href="{% url 'account_logout' %}">Log out</a>
-                </li>
-                {% else %}
-                <li class="nav-item">
-                    <a class="nav-link text-white {% if request.path == account_signup_url %}active"
-                        aria-current="page{%endif%}" href="{% url 'account_signup' %}">Sign up</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white {% if request.path == account_login_url %}active"
-                        aria-current="page{%endif%}" href="{% url 'account_login' %}">Login</a>
-                </li>
-                {% endif %}
-
-            </ul>
-
-
-            <div class="dropdown text-right text-sm-end">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    More
-                </button>
-
-                <div class="dropdown-menu bg-primary text-end m-1" aria-labelledby="dropdownMenu2">
-                    <div class="dropdown-item bg-transparent">
-                        <a class="text-white {% if request.path == search_url %}active" aria-current="page{%endif%}"
-                            href="{% url 'post_search' %}"> Search </a>
-                    </div>
-                    <div class="dropdown-item bg-transparent"><a
-                            class="text-white {% if request.path == about_url %}active" aria-current="page{%endif%}"
-                            href="{% url 'about_page' %}">About</a>
-                    </div>
-                    <div class="dropdown-item bg-transparent"><a
-                            class="text-white {% if request.path == contact %}active" aria-current="page{%endif%}"
-                            href="{% url 'contact' %}">Contact</a>
-                    </div>
-                </div>
-
-
-            </div>
-
-        </div>
-
+        </nav>
     </header>
 
     <!-- displaying Django confirmation messages -->
-    <div class="container text-white">
+    <div class="container text-white mt-3">
         <div class="row">
             <div>
                 {% for message in messages %}
-                <div class="alert {{ message.tags }} alert-dismissible
-          fade show" id="msg" role="alert">
-                    {{ message | safe }}
+                <div class="alert {{ message.tags }} alert-dismissible fade show" id="msg" role="alert">
+                    {{ message|safe }}
                 </div>
                 {% endfor %}
             </div>
         </div>
     </div>
 
-
-    <main class="">
+    <main class="container">
         {% block content %}
         <!-- Content Goes here -->
         {% endblock content %}
-
     </main>
 
     <!-- Footer -->
-    <div class="footer_div">
-        <footer class="footer mt-auto py-3">
-            <div>
-                <h4 class="m-0 text-center text-white">Created by Lilian Amatobi</h4>
-                <h5 class="text-white m-0 text-center">Follow Us</h5>
-                <ul class="socials">
-                    <li class="m-0 text-center">
-                        <a href="https://www.linkedin.com/in/lilian-adimchinobi-amatobi-9b93b4208?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
-                            target="_blank" rel="noopener" aria-label="Visit my Linkedln page"><i
-                                class="fa-brands fa-linkedin"></i></a>
-                    </li>
-                    <li class="m-0 text-center"><a href="https://github.com/Adimserious/cyber-security-blog" target="_blank" rel="noopener"
-                            aria-label="Visit my Github page"><i class="fa-brands fa-github"></i></a>
-                    </li>
-                </ul>
-                <h4 class="m-0 text-center text-white">Inspired by my Love for Security</h4>
-                <p class="m-0 text-center text-white">Copyright © | Cybersecurity Mindset | Educational Purpose Only |
-                    Code Institute | 2024</p>
-            </div>
-        </footer>
-    </div>
+    <footer class="footer mt-auto py-3 bg-dark">
+        <div class="container text-center text-white">
+            <h4>Created by Lilian Amatobi</h4>
+            <p>Follow Us</p>
+            <ul class="list-inline">
+                <li class="list-inline-item">
+                    <a href="https://www.linkedin.com/in/lilian-adimchinobi-amatobi-9b93b4208" target="_blank"
+                        class="text-white"><i class="fab fa-linkedin"></i></a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="https://github.com/Adimserious/cyber-security-blog" target="_blank"
+                        class="text-white"><i class="fab fa-github"></i></a>
+                </li>
+            </ul>
+            <p>Inspired by my Love for Security | Educational Purpose Only | Code Institute | 2024</p>
+        </div>
+    </footer>
 
-    <!-- Font awesome kit -->
-    <script src="https://kit.fontawesome.com/c2a5ce9714.js" crossorigin="anonymous"></script>
-
-    <!-- Bootsrap js -->
+    <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>
