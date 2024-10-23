@@ -12,6 +12,9 @@ urlpatterns = [
     path('delete_post/<int:pk>/remove/', views.delete_post, name='delete_post'),
     path('delete_comment/<int:pk>/delete/', views.delete_comment, name='delete_comment'),
     path('create_category/', views.create_category, name='create_category'),
+    path('categories/update/<int:pk>/', views.update_category, name='update_category'),
+    path('categories/delete/<int:pk>/', views.delete_category, name='delete_category'),
+    path('categories/', views.category_list, name='category_list'),
     path('<slug:slug>/', views.read_more, name='read_more'),
     path('<slug:slug>/<int:pk>', views.like_view, name='like_post'),
 

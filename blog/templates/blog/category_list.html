@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Categories</h2>
+    <a href="{% url 'create_category' %}" class="btn btn-primary mb-3">Create Category</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                {% if request.user.is_authenticated %}
+                    <th>Actions</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for category in categories %}
+            <tr>
+                <td>{{ category.name }}</td>
+                {% if category.author == request.user %}
+                    <td>
+                        <a href="{% url 'update_category' category.pk %}" class="btn btn-secondary">Edit</a>
+                        <a href="{% url 'delete_category' category.pk %}" class="btn btn-danger">Delete</a>
+                    </td>
+                {% else %}
+                    <td></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

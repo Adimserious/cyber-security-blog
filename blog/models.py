@@ -4,12 +4,14 @@ from django.utils import timezone
 from cloudinary.models import CloudinaryField
 from django.urls import reverse
 
+
 class Category(models.Model):
     """
     Category model stores category for various blog posts.
     """
     name = models.CharField(max_length=200)
-
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    
     def __str__(self):
         return self.name
 

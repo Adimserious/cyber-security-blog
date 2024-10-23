@@ -56,7 +56,7 @@ class AllPost(generic.ListView):
     paginate_by = 6
 
 
-class Category(generic.ListView):
+class CategoryListView(generic.ListView):
     """
     Display posts by category.
     """
@@ -181,7 +181,6 @@ def read_more(request, slug):
     })
 
 
-
 @login_required(login_url="/accounts/login/")
 def create_post(request):
     """
@@ -207,14 +206,72 @@ def create_category(request):
     View to create a category.
     """
     if request.method == "POST":
-        form = forms.CreateCategory(request.POST)
+        form = CreateCategory(request.POST)
         if form.is_valid():
-            category = form.save(commit=False)
-            category.author = request.user
-            category.save()
-            messages.success(request, "Category Created Successfully!")
-            return redirect('home')
+            # Check if the category with the same name already exists
+            name = form.cleaned_data.get('name')
+            if Category.objects.filter(name__iexact=name).exists():
+                messages.error(request, f'Category "{name}" already exists. Please choose another name.')
+            else:
+                category = form.save(commit=False)
+                category.author = request.user
+                category.save()
+                messages.success(request, "Category Created Successfully!")
+                return redirect('category_list')
     else:
-        form = forms.CreateCategory()
+        form = CreateCategory()
 
     return render(request, 'blog/create_category.html', {'form': form})
+
+
+@login_required
+def category_list(request):
+    """
+    View to list all categories.
+    """
+    categories = Category.objects.all()
+    return render(request, 'blog/category_list.html', {'categories': categories})
+
+
+@login_required
+def update_category(request, pk):
+    """
+    View to update a category. Only the category's author can update it.
+    """
+    category = get_object_or_404(Category, pk=pk)
+    
+    # Ensures the logged-in user is the author
+    if category.author != request.user:
+        messages.error(request, "You are not authorized to edit this category.")
+        return redirect('category_list')
+
+    if request.method == "POST":
+        form = CreateCategory(request.POST, instance=category)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Category Updated Successfully!")
+            return redirect('category_list')
+    else:
+        form = CreateCategory(instance=category)
+
+    return render(request, 'blog/update_category.html', {'form': form, 'category': category})
+
+
+@login_required
+def delete_category(request, pk):
+    """
+    View to delete a category. Only the category's author can delete it.
+    """
+    category = get_object_or_404(Category, pk=pk)
+
+    # Ensures the logged-in user is the author
+    if category.author != request.user:
+        messages.error(request, "You are not authorized to delete this category.")
+        return redirect('category_list')
+
+    if request.method == "POST":
+        category.delete()
+        messages.success(request, "Category Deleted Successfully!")
+        return redirect('category_list')
+
+    return render(request, 'blog/delete_category.html', {'category': category})
