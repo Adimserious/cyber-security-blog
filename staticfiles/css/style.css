@@ -1,8 +1,9 @@
-body {
+/* All Posts Page Specific Background */
+.all-posts-background {
     background-image: url("https://res.cloudinary.com/diljenpjx/image/upload/v1722456110/cyber-7930967_1280_1_af8uqc.jpg");
-    background-color: black;  
-}
-
-.about-image {
-    width: 75%;
+    background-color: black;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
 }
