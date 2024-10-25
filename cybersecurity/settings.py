@@ -10,7 +10,7 @@ if os.path.isfile('env.py'):
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['8000-adimserious-cybersecuri-5lmpbyky5vj.ws.codeinstitute-ide.net', '.herokuapp.com']
 
