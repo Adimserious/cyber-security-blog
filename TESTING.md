@@ -299,7 +299,4 @@ Automated tests help us to:
 The background image wouldn't show in the deployed site and i was stucked findind solution to it untill i downloaded the image on cloudinary and used the image url in the stylesheet.
 
 ### Known Bugs
-The search function shows displays search results or not accordingly, however the links doesn't take user to the individual post, i couldn't go further to finding solutions to this due to limited time.
-
-### Unknown Bugs
-I am not aware of any unknown bugs so far.
+I am not aware of any known bugs so far.

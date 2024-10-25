@@ -6,9 +6,9 @@
     <div class="row justify-content-center">
         <!-- Image Section -->
         <div class="col-md-4 text-center">
-            <img src="{% static 'placeholder_images/about-image.webp' %}" 
+            <img src="{% static 'placeholder_images/placeholder.jpg' %}" 
                  class="img-fluid rounded" 
-                 style="max-width: 150px; height: auto;" 
+                 style="max-width: 300px; height: auto;" 
                  alt="About Image">
         </div>
 
@@ -31,4 +31,66 @@
     </div>
 </div>
 
+<div class="container mt-5">
+
+    <!-- Mission Statement -->
+    <div class="row">
+        <div class="col-md-6 d-flex align-items-center">
+            <div>
+                <h3>Our Mission</h3>
+                <p>We aim to empower individuals and businesses to stay safe in the digital world. Through in-depth articles, up-to-date news, and expert advice, we are here to help you navigate cybersecurity challenges confidently.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Values Section -->
+    <div class="row mt-5">
+        <div class="col-12 text-center">
+            <h3>Our Values</h3>
+        </div>
+        <div class="col-md-4 text-center">
+            <i class="bi bi-shield-lock display-3"></i>
+            <h4>Security</h4>
+            <p>Security is at the core of everything we do. Our insights help you protect your digital identity and assets.</p>
+        </div>
+        <div class="col-md-4 text-center">
+            <i class="bi bi-lightning-charge display-3"></i>
+            <h4>Innovation</h4>
+            <p>We are committed to staying ahead of trends, sharing the latest strategies to keep you protected.</p>
+        </div>
+        <div class="col-md-4 text-center">
+            <i class="bi bi-people display-3"></i>
+            <h4>Community</h4>
+            <p>Our blog serves as a community for like-minded individuals passionate about cybersecurity.</p>
+        </div>
+    </div>
+
+    <!-- Team Section -->
+    <div class="row mt-5">
+        <div class="col-12 text-center">
+            <h3>Meet the Team</h3>
+            <p class="text-muted">Get to know the minds behind the content.</p>
+        </div>
+        <div class="col-md-4 text-center">
+            
+            <h5 class="mt-3">Lilian Bach</h5>
+            <p>Lead Security Analyst</p>
+        </div>
+        <div class="col-md-4 text-center">
+            <h5 class="mt-3">George Lee</h5>
+            <p>Content Strategist</p>
+        </div>
+        <div class="col-md-4 text-center">
+            <h5 class="mt-3">Miracle Brown</h5>
+            <p>Research Specialist</p>
+        </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="row mt-5">
+        <div class="col-12 text-center">
+            <p class="lead">Have questions or suggestions? <a href="{% url 'contact' %}">Contact Us</a> today.</p>
+        </div>
+    </div>
+</div>
 {% endblock %}

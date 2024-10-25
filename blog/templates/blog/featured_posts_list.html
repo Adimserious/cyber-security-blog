@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Featured Posts</h1>
+    
+    {% if featured_posts %}
+        <div class="row">
+            {% for featured_post in featured_posts %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    {% if featured_post.featured_image %}
+                    <img src="{{ featured_post.featured_image.url }}" class="card-img-top" alt="{{ featured_post.post.title }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ featured_post.post.title }}</h5>
+                        <p class="card-text">{{ featured_post.post.excerpt|truncatewords:20 }}</p>
+                        <a href="{% url 'featured_post_detail' featured_post.pk %}" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No featured posts available at the moment.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -5,10 +5,11 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.db.models import Q
 from django.contrib.auth.mixins import UserPassesTestMixin
-from .models import Blog_post, Category, Comment
+from .models import Blog_post, Category, Comment, FeaturedPost
 from . import forms
 from .forms import CommentPost, CreatePost, PostSearchForm, CreateCategory
 from django.urls import reverse_lazy
+from django.utils import timezone
 
 
 @login_required
@@ -54,6 +55,16 @@ class AllPost(generic.ListView):
     queryset = Blog_post.objects.filter(status=1).order_by('-created')
     template_name = "blog/all_post.html"
     paginate_by = 6
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Featured posts that are active and published
+        context['featured_posts'] = Blog_post.objects.filter(
+            featured=True,
+            status=1,
+            created__lte=timezone.now()
+        )
+        return context
 
 
 class CategoryListView(generic.ListView):
@@ -277,3 +288,16 @@ def delete_category(request, pk):
         return redirect('category_list')
 
     return render(request, 'blog/delete_category.html', {'category': category})
+
+
+def featured_post_detail(request, pk):
+    """Displays the details of a specific featured post."""
+    featured_post = get_object_or_404(FeaturedPost, pk=pk, is_active=True)
+    return render(request, 'blog/featured_post_detail.html', {
+        'featured_post': featured_post
+    })
+
+
+def deactivate_expired_featured_posts():
+    """Deactivate featured posts that have expired."""
+    FeaturedPost.objects.filter(is_active=True, highlight_until__lt=timezone.now()).update(is_active=False)

@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from cloudinary.models import CloudinaryField
 from django.urls import reverse
+from django.utils.text import slugify
 
 
 class Category(models.Model):
@@ -15,9 +16,7 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-
 STATUS_CHOICES = ((0, 'pending'), (1, "done"))
-
 
 class Blog_post(models.Model):
     """
@@ -35,6 +34,7 @@ class Blog_post(models.Model):
     status = models.IntegerField(choices=STATUS_CHOICES, default=0)
     category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name="blog_post", default=1)
     likes = models.ManyToManyField(User, related_name="post_likes")
+    featured = models.BooleanField(default=False)
 
     class Meta:
         ordering = ["-published"]
@@ -43,17 +43,15 @@ class Blog_post(models.Model):
         return self.likes.count()
 
     def get_absolute_url(self):
-        # Returns the URL to access a particular blog post instance
         return reverse('read_more', kwargs={'slug': self.slug})
 
     def __str__(self):
         return f"The title of this post is {self.title} | by {self.author}"
 
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.title)  # Generate a slug from the title
+        if not self.slug and self.title:
+            self.slug = slugify(self.title)
         super().save(*args, **kwargs)
-
 
 class Comment(models.Model):
     """
@@ -70,3 +68,19 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"Comment: {self.content}. by {self.author}"
+
+class FeaturedPost(models.Model):
+    """
+    This model stores featured posts in slides.
+    """
+    post = models.OneToOneField(Blog_post, on_delete=models.CASCADE)
+    featured_on = models.DateTimeField(auto_now_add=True)
+    highlight_until = models.DateTimeField(null=True, blank=True)
+    is_active = models.BooleanField(default=True)
+    featured_image = models.ImageField(upload_to='featured_images/', null=True, blank=True)
+
+    def __str__(self):
+        return self.post.title
+
+
+

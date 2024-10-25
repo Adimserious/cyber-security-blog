@@ -4,9 +4,49 @@
 
 {% block content %}
 <body class="all-posts-background">
-    <h2 class="text-white text-center">All Posts</h2>
-
     <div class="container mt-3">
+        <!-- Featured Posts Carousel Section -->
+        {% if featured_posts %}
+        <h3 class="text-white text-center">Featured Posts</h3>
+        <div id="featuredPostsCarousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                {% for featured in featured_posts %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card mb-4 shadow-sm">
+                                <div class="image-container">
+                                    <img src="{{ featured.image.url }}" class="card-img-top img-fluid" alt="Featured image" style="max-height: 200px; object-fit: cover;">
+                                </div>
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title">{{ featured.title }}</h5>
+                                    <p class="card-text">
+                                        {{ featured.body_content|striptags|slice:":50" }}{% if featured.body_content|length > 50 %}...
+                                        <a href="{% url 'read_more' featured.slug %}">Read more</a>
+                                        {% endif %}
+                                    </p>
+                                    <p class="card-text text-muted mt-2">{{ featured.created }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <a class="carousel-control-prev" href="#featuredPostsCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#featuredPostsCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        {% endif %}
+
+        <!-- All Posts Section -->
+        <h3 class="text-white text-center">All Posts</h3>
         <div class="row">
             {% for post in blog_post_list %}
             <div class="col-md-4 d-flex align-items-stretch">

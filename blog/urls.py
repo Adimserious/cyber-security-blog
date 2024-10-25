@@ -17,5 +17,6 @@ urlpatterns = [
     path('categories/', views.category_list, name='category_list'),
     path('<slug:slug>/', views.read_more, name='read_more'),
     path('<slug:slug>/<int:pk>', views.like_view, name='like_post'),
+    path('featured/<int:pk>/', views.featured_post_detail, name='featured_post_detail'),
 
 ]
