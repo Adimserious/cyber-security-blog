@@ -151,10 +151,9 @@ Accessibility:
 - Visual Elements: relevant and high-quality images is used to enhance content.
 
 ## Project planning
-[GitHub repository for issues and project planning](https://github.com/users/Adimserious/projects/4)
+[GitHub issues and project planning](static/placeholder_images/github-issues.png)
 
-
-![GitHub repository for issues and project planning image](static/placeholder_images/github-issues.png)
+![GitHub repository for issues and project planning image](static/placeholder_images/github-project.png)
 
 ## Agile methodology project Management with Github 
 CyberSecurity Mindset adopted the Agile methodology project Management with GitHub using GitHub's features which emphasize flexibility, collaboration, and iterative progress. Here's a comprehensive explanation of some of the features i used for the Cybersecurity Mindset blog to manage an agile project using GitHub:
@@ -340,6 +339,10 @@ Django AllAuth is an installable framework that takes care of the user registrat
 ## Features 
 ## Existing Features
 
+### Featured Posts
+- There are featured posts in the home page showing slides of different posts.
+![Featured posts Screenshot](static/placeholder_images/featured-posts.png)
+
 #### Home Page
 ![Home Page Screenshot](static/placeholder_images/home-page-img.png)
 
@@ -361,6 +364,11 @@ Django AllAuth is an installable framework that takes care of the user registrat
   - Content creators can view their posts through 'All Posts'. They can view all their contributions, and every other existing Cybersecurity posts.
 
   ![List Of Posts Screenshot](static/placeholder_images/all-post.png)
+
+### About Page
+
+- The about page featured imaginary contributors and informations about the Cybersecurity Mindset blog
+  ![List Of Posts Screenshot](static/placeholder_images/about-image.png)
 
 #### Create Post
 
@@ -441,11 +449,9 @@ Cybersecurity Mindset is a platform that allow users to engage with content acro
 
 ## Features remaining to implement
 Due to time constraints, the following features are remaining to implement
-- The update and delete functionality for create category poage.
-Hero Section:
-- The Featured Articles Slider Highlights to the latest or most important posts.
 - The bookmark user story.
 - Adding summernote for users.
+
 ## Technologies Used
 ### Frontend
 - [**HTML5**](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5): Used for the web Structures.

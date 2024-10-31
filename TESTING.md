@@ -197,6 +197,9 @@ Contact Module Python Validation Results
 | Comment Form       | Yes     | Submit comment | Comment is added to the post and is awaiting approval | Pass      | ![screenshot](static/placeholder_images/comment-confirm.png)     |
 | Create category Form       | Yes     | Submit new category | Category is added to existing ones. | Pass      | ![screenshot](static/placeholder_images/create-cat-mssg.png)     |
 | Sign outpage       | Yes     | Sign user out | User is signed out successfully. | Pass      | ![screenshot](static/placeholder_images/sign-out-mssg.png)     |
+|No Access to Editing Others Post       | Yes     | Takes user to the homepage | Message of no permission is shown. | Pass      | ![screenshot](static/placeholder_images/no.-access-edit-post.png)     |
+|No Access to Editing Others Category       | Yes     | Takes user to the homepage | Message of no permission is shown. | Pass      | ![screenshot](static/placeholder_images/no-access-edit-cat.png.png)     |
+
 
 
 **User Input**
