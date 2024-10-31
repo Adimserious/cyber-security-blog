@@ -151,9 +151,9 @@ Accessibility:
 - Visual Elements: relevant and high-quality images is used to enhance content.
 
 ## Project planning
-[GitHub issues and project planning](static/placeholder_images/github-issues.png)
+![GitHub issues image](static/placeholder_images/github-issues.png)
 
-![GitHub repository for issues and project planning image](static/placeholder_images/github-project.png)
+![GitHub issues and project planning image](static/placeholder_images/github-project.png)
 
 ## Agile methodology project Management with Github 
 CyberSecurity Mindset adopted the Agile methodology project Management with GitHub using GitHub's features which emphasize flexibility, collaboration, and iterative progress. Here's a comprehensive explanation of some of the features i used for the Cybersecurity Mindset blog to manage an agile project using GitHub:
@@ -343,8 +343,8 @@ Django AllAuth is an installable framework that takes care of the user registrat
 - There are featured posts in the home page showing slides of different posts.
 ![Featured posts Screenshot](static/placeholder_images/featured-posts.png)
 
-#### Home Page
-![Home Page Screenshot](static/placeholder_images/home-page-img.png)
+#### All Posts
+![List Of Posts Screenshot](static/placeholder_images/all-posts-img.png)
 
 #### User Registration, Login, and Logout
 
@@ -399,6 +399,19 @@ Django AllAuth is an installable framework that takes care of the user registrat
   - Users can create new categories to add to the existing categories.
 
   ![Create Category Screenshot](static/placeholder_images/create-cat-img.png)
+
+#### Search Page
+
+  - Users can search for blog posts and navigate to the posts through the search results.
+
+  ![Search Page](static/placeholder_images/search-page-img.png)
+  ![Search Page](static/placeholder_images/search-results.png)
+
+
+#### Contact Page
+
+  - Users can send contact messages through the contact form.
+  ![Search Page](static/placeholder_images/contact-page.png)
 
 #### Likes
 
