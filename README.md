@@ -339,13 +339,6 @@ Django AllAuth is an installable framework that takes care of the user registrat
 ## Features 
 ## Existing Features
 
-### Featured Posts
-- There are featured posts in the home page showing slides of different posts.
-![Featured posts Screenshot](static/placeholder_images/featured-posts.png)
-
-#### All Posts
-![List Of Posts Screenshot](static/placeholder_images/all-posts-img.png)
-
 #### User Registration, Login, and Logout
 
   - New users can sign up by providing their username, email, and password. Existing users can log in using their credentials to access personalized features.
@@ -358,6 +351,10 @@ Django AllAuth is an installable framework that takes care of the user registrat
 
   **Logout/Signout**
       ![Log out Screenshot](static/placeholder_images/sign-out-img.png)
+
+### Featured Posts
+- There are featured posts in the home page showing slides of different posts.
+![Featured posts Screenshot](static/placeholder_images/featured-posts.png)
 
 #### All Posts
 
