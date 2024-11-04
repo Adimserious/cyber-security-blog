@@ -6,6 +6,8 @@ Our focus and goal is to provide comprehensive and up-to-date information on a w
 
 ![Am I Responsive Image](static/placeholder_images/am-i-resp.png)
 
+![Homepage image](/static/placeholder_images/homepage.png)
+
 Link to live website: [CLICK HERE!](https://cybersecurity-blog-c42a16cdf7ab.herokuapp.com/)
 
 
@@ -91,9 +93,8 @@ Header:
 - The  About, Contact, Search (magnifying glass icon) is at the lower Top right corner.
 - The Create-post, Create Category, and Log-out is seen when a user has logged in, this allowers access to only login users.
 
-Hero Section: (not yet included)
+Hero Section:
 - The Featured Articles Slider Highlights the latest or most important posts.
-- The Search Bar is Prominent and located at the top right in the More dropdown for easy access.
 
 Main Content:
 - Shows a list view of recent Blog_posts with authors, titles, excerpts, publication dates and time.
@@ -113,7 +114,6 @@ Article Content:
 - Related Articles: Suggested reads based on the current post.
 - publication date and time comes directly after the detailed article.
 - Comment Section: Is Secured and moderated with the option for users to login to comment, update and delete their comments.
-
 
 
 ### 3. Create Category Page
@@ -402,6 +402,7 @@ Django AllAuth is an installable framework that takes care of the user registrat
   - Users can search for blog posts and navigate to the posts through the search results.
 
   ![Search Page](static/placeholder_images/search-page-img.png)
+
   ![Search Page](static/placeholder_images/search-results.png)
 
 
@@ -434,6 +435,11 @@ Django AllAuth is an installable framework that takes care of the user registrat
  - Administrators have access to a backend panel where they can manage users, Cybersecurity posts, categories, and comments.
 
   ![Admin Panel Screenshot](static/placeholder_images/admin-img.png)
+
+#### 404 page
+- A 404 page is a custom error page shown to users when they try to access a page that doesn't exist on a website. It informs them that the content they’re looking for couldn’t be found, the 404 page for the CYbersecurity Mindset offers link to return to the homepage to improve user experience.
+
+![404 Page](/static/placeholder_images/404.png)
 
 ###  Functionality
 Cybersecurity Mindset is a platform that allow users to engage with content across various Cybersecurity domains. Below is a table highlighting its features, detailing the level of access for registered up and unregistered users, and the CRUD (Create, Read, Update, Delete) functionalities available:

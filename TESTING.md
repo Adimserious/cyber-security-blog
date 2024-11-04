@@ -224,7 +224,6 @@ Contact Module Python Validation Results
 | Accessibility Features (e.g., ARIA)   | Yes     | Use of assistive technology  | ARIA labels and roles are present, ensuring accessibility compliance.            | Pass      | -                    |
 
 
-
 ### User Story Testing
 
 | User Story ID | Title | Tested? | Response | Acceptance Criteria | Pass/Fail |
@@ -263,7 +262,6 @@ Contact Module Python Validation Results
 | 9 | Implement Comprehensive Testing | Yes | No issues | Comprehensive testing is carried out across the application | Pass |
 | 10 | Contact Form Submission Feature(Site Owner) | Yes | No issues | Site owner can receive and respond to contact submissions | Pass |
 | 11 | Enhance Data Validation | Yes | No issues | Data validation mechanisms are in place and functional | Pass |
-
 
 
 ## Automated Testing
